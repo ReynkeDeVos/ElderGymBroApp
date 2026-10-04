@@ -51,7 +51,7 @@ const UserWorkout = ({ workouts }) => {
 
   return (
     <div className="font-cthulhumbus flex min-h-screen flex-col items-center bg-linear-to-br from-black to-blue-950 pt-0">
-      <div className="fixed top-0 right-0 left-0 z-50 bg-black p-0 text-center text-white shadow-md">
+      <div className="fixed top-0 right-0 left-0 z-50 mx-auto max-w-2xl bg-black p-0 text-center text-white shadow-md">
         <div className="flex items-center justify-center">
           <span className="mr-2">Karma</span>
           <progress className="progress progress-accent w-56" value={karmaPoints} max="100"></progress>

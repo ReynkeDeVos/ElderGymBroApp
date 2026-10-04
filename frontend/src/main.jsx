@@ -14,7 +14,7 @@ import '@fontsource/roboto/700.css';
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 axios.defaults.withCredentials = true;
 
-const darkTheme = createTheme({ palette: { mode: 'dark' } });
+const darkTheme = createTheme({ palette: { mode: 'dark', background: { default: '#000' } } });
 
 createRoot(document.getElementById('root')).render(
   <AuthProvider>

@@ -68,6 +68,7 @@ function SetYourGrind() {
             left: '50%',
             transform: 'translate(-50%, -50%)',
             width: '90%',
+            maxWidth: 600,
             bgcolor: 'darkslategray',
             boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
             p: 1.5,
