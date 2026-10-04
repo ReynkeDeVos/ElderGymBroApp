@@ -1,15 +1,10 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-// adding HTTPS functionality
+import tailwindcss from '@tailwindcss/vite';
 import basicSsl from '@vitejs/plugin-basic-ssl';
-import process from 'process';
-import { config } from 'dotenv';
-config();
-// https://vitejs.dev/config/
+
+// basicSsl: the backend's CORS/cookie setup expects https://localhost:5173
 export default defineConfig({
-  plugins: [react(), basicSsl()],
-  server: {
-    https: process.env.HTTPS === 'true', // use environment variable
-    port: 5173, // Explicitly set the port here
-  },
+  plugins: [react(), tailwindcss(), basicSsl()],
+  server: { port: 5173 },
 });

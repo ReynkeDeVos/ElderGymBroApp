@@ -1,44 +1,22 @@
-import { useNavigate } from 'react-router-dom';
-import { Canvas } from '@react-three/fiber';
-import { Stars } from '@react-three/drei';
+import { useNavigate } from 'react-router';
 import { Button } from '@mui/material';
 import accessDeniedImage from '../assets/images/access-denied.jpg';
+import { Starfield } from '../assets/components/Cosmos';
 
 function AccessDeniedPage() {
   const navigate = useNavigate();
 
-  const handleLoginRedirect = () => {
-    navigate('/login');
-  };
-
   return (
-    <div
-      style={{
-        position: 'relative',
-        width: '100%',
-        height: '100vh',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        color: '#fff',
-        textAlign: 'center',
-        flexDirection: 'column',
-      }}>
+    <div className="relative flex h-screen w-full flex-col items-center justify-center text-center text-white">
       <img src={accessDeniedImage} alt="Access Denied" className="mb-8 rounded-full" />
-
       <Button
         variant="contained"
         color="primary"
-        onClick={handleLoginRedirect}
+        onClick={() => navigate('/login')}
         style={{ marginTop: '1rem', textTransform: 'none' }}>
         Login first
       </Button>
-
-      <Canvas style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none' }}>
-        <Stars radius={50} count={2500} factor={4} fade speed={2} />
-      </Canvas>
+      <Starfield />
     </div>
   );
 }

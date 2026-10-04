@@ -1,4 +1,5 @@
 export const errorHandler = (err, req, res, next) => {
-  // console.log(err.stack);
-  res.status(err.statusCode || 500).json({ error: err.message });
+  const status = err.statusCode || (err.name === 'ValidationError' ? 400 : 500);
+  if (status === 500) console.error(err);
+  res.status(status).json({ error: err.message });
 };

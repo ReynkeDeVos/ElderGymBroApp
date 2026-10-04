@@ -1,55 +1,35 @@
-// Titles for Karma Points & Levels
+const titles = [
+  'Cannon Fodder Cultist',
+  'Tentacle-Tickler Trainee',
+  "Dagon's Dishwasher",
+  "Cthulhu's Coffee Fetcher",
+  'Eldritch Errand Runner',
+  "Deep One's Doormat",
+  'Paranormal Paper Pusher',
+  "Great Old One's Goofball",
+  'Tentacle Tamer',
+  'Supreme Spookster',
+];
 
-export function getTitle(karmaPoints) {
-  if (karmaPoints < 200) {
-    return 'Cannon Fodder Cultist';
-  } else if (karmaPoints < 400) {
-    return 'Tentacle-Tickler Trainee';
-  } else if (karmaPoints < 800) {
-    return "Dagon's Dishwasher";
-  } else if (karmaPoints < 1600) {
-    return "Cthulhu's Coffee Fetcher";
-  } else if (karmaPoints < 3200) {
-    return 'Eldritch Errand Runner';
-  } else if (karmaPoints < 6400) {
-    return "Deep One's Doormat";
-  } else if (karmaPoints < 12800) {
-    return 'Paranormal Paper Pusher';
-  } else if (karmaPoints < 256000) {
-    return "Great Old One's Goofball";
-  } else if (karmaPoints < 512000) {
-    return 'Tentacle Tamer';
-  } else if (karmaPoints < 1024000) {
-    return 'Supreme Spookster';
-  }
-}
+// Karma needed to leave level 1, 2, 3, ...
+const thresholds = [200, 400, 800, 1600, 3200, 6400, 12800, 256000, 512000, 1024000];
 
-// Level Tresholds & Progress Calculation
+export const calculateLevel = (points) => thresholds.filter((t) => points >= t).length + 1;
 
-export const karmaPointsPerLevel = [200, 400, 800, 1600, 3200, 6400, 12800, 256000, 512000, 1024000];
+export const getTitle = (points) => titles[Math.min(calculateLevel(points), titles.length) - 1];
 
-export function calculateLevel(currentKarmaPoints) {
-  let level = 1;
-  for (let i = 0; i < karmaPointsPerLevel.length; i++) {
-    if (currentKarmaPoints >= karmaPointsPerLevel[i]) {
-      level = i + 2; // Levels start at 1, so +2 to account for the next level
-    } else {
-      break;
-    }
-  }
-  return level;
-}
-export function calculateProgressToNextLevel(currentKarmaPoints) {
-  // Assuming karmaPointsPerLevel defines the points needed for each level
-  // Find the next level's index
-  const nextLevelIndex = karmaPointsPerLevel.findIndex((points) => currentKarmaPoints < points);
-  if (nextLevelIndex === -1) {
-    // If the user's karma points exceed all defined levels, consider them at max progress
-    return 100; // Assuming 100% is max progress
-  }
-  // Calculate progress towards the next level
-  const pointsForNextLevel = karmaPointsPerLevel[nextLevelIndex];
-  const pointsForCurrentLevel = nextLevelIndex === 0 ? 0 : karmaPointsPerLevel[nextLevelIndex - 1];
-  const progress = ((currentKarmaPoints - pointsForCurrentLevel) / (pointsForNextLevel - pointsForCurrentLevel)) * 100;
-  return progress;
-}
+// Percent of the way from the current level's threshold to the next one.
+export const calculateProgressToNextLevel = (points) => {
+  const next = thresholds.findIndex((t) => points < t);
+  if (next === -1) return 100;
+  const floor = thresholds[next - 1] ?? 0;
+  return ((points - floor) / (thresholds[next] - floor)) * 100;
+};
+
+export const addKarma = (user, points) => {
+  const awards = user.awards;
+  awards.karmaPoints += points;
+  awards.level = calculateLevel(awards.karmaPoints);
+  awards.progress = calculateProgressToNextLevel(awards.karmaPoints);
+  awards.title = getTitle(awards.karmaPoints);
+};

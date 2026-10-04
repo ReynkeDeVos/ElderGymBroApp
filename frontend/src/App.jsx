@@ -1,22 +1,16 @@
-import './App.css';
-import { useState } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { Routes, Route, useLocation } from 'react-router';
+import axios from 'axios';
+import { Slide, ToastContainer } from 'react-toastify';
 import LandingPage from './pages/LandingPage';
 import Profile from './pages/Profile';
-import Template from './pages/Template';
 import StartYourJourney from './pages/onboarding/StartYourJourney';
 import WhatsYourGoal from './pages/onboarding/WhatsYourGoal';
 import SetYourGrind from './pages/onboarding/SetYourGrind';
-import WorkoutPlan from './pages/Workouts';
-// import EditUserData from './pages/EditUserData';
+import Workouts from './pages/Workouts';
 import SetUp from './pages/onboarding/SetUp';
-import useFetchData from './utils/FetchData';
 import Trophys from './pages/Trophys';
-import UIElements from './assets/components/UIElements';
 import ForgotPassword from './pages/ForgotPassword';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import RegisterForm from './pages/RegisterForm';
 import BottomNav from './assets/components/BottomNav';
 import LoginForm from './pages/LoginForm';
 import NotFound from './pages/NotFound';
@@ -28,93 +22,60 @@ import UserWorkout from './pages/UserWorkout';
 import PrivateRoute from './utils/PrivateRoute';
 import AccessDeniedPage from './pages/AccessDeniedPage';
 
+// Code-split: the password-strength dictionaries are ~1.5 MB and only needed here
+const RegisterForm = lazy(() => import('./pages/RegisterForm'));
+
 function App() {
-  const { hardcodedWorkouts } = useFetchData();
-  const [progress, setProgress] = useState(0);
-  const [unlockedAchievments, setUnlockedAchievments] = useState([]);
-  const location = useLocation();
-  // Hier die Routes adden, die BottomNav enthalten sollen.
-  const showBottomNav = ['/home', '/workouts', '/trophys', '/progress', '/profile'].includes(location.pathname);
+  const [workouts, setWorkouts] = useState([]);
+  const { pathname } = useLocation();
+  const showUserBar = ['/home', '/workouts', '/trophys', '/progress'].includes(pathname);
+  const showBottomNav = showUserBar || pathname === '/profile';
 
-  const showUserBar = ['/home', '/workouts', '/trophys', '/progress'].includes(location.pathname);
-
-  const updateProgress = (newProgress) => {
-    setProgress(newProgress);
-  };
-
-  const toggleAchievement = (id, status) => {
-    setUnlockedAchievments((prev) => {
-      if (status) {
-        if (!prev.includes(id)) {
-          return [...prev, id];
-        }
-      } else {
-        return prev.filter((achievementId) => achievementId !== id);
-      }
-      return prev;
-    });
-  };
+  useEffect(() => {
+    axios
+      .get('/hardcodedworkouts')
+      .then((res) => setWorkouts(res.data))
+      .catch(console.error);
+  }, []);
 
   return (
     <>
-      {/* Stepper Settings */}
-      {/* {stepRoutes.includes(location.pathname) && <StepperComponent />} */}
-      {/* Bottom Nav */}
       {showBottomNav && <BottomNav />}
       {showUserBar && <UserBar />}
       <ToastContainer
         position="bottom-center"
-        autoClose={5000}
-        hideProgressBar={false}
         newestOnTop
         closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
         draggable
         pauseOnHover={false}
         theme="dark"
-        transition:Slide
+        transition={Slide}
       />
-      <Routes>
-        {/* Open Routes */}
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/register" element={<RegisterForm />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/forgotpassword" element={<ForgotPassword />} />
-        <Route path="/accessdenied" element={<AccessDeniedPage />} />
+      <Suspense>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
+          <Route path="/accessdenied" element={<AccessDeniedPage />} />
 
-        {/* Protected Routes */}
-        <Route element={<PrivateRoute />}>
-          <Route path="/home" element={<Dashboard workouts={hardcodedWorkouts} />} />
-          <Route path="/profile" element={<Profile />} />
-          {/* <Route path="/edituserdata" element={<EditUserData />} /> */}
-          <Route
-            path="/trophys"
-            element={
-              <Trophys
-                progress={progress}
-                updateProgress={updateProgress}
-                toggleAchievement={toggleAchievement}
-                unlockedAchievments={unlockedAchievments}
-              />
-            }
-          />
-          <Route path="/workouts" element={<WorkoutPlan workouts={hardcodedWorkouts} />} />
-          <Route path="/progress" element={<ProgressTracker />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/home" element={<Dashboard workouts={workouts} />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/trophys" element={<Trophys />} />
+            <Route path="/workouts" element={<Workouts workouts={workouts} />} />
+            <Route path="/progress" element={<ProgressTracker />} />
+            <Route path="/setup" element={<SetUp />} />
+            <Route path="/startyourjourney" element={<StartYourJourney />} />
+            <Route path="/whatsyourgoal" element={<WhatsYourGoal />} />
+            <Route path="/setyourgrind" element={<SetYourGrind />} />
+            <Route path="/gender" element={<GenderWar />} />
+            <Route path="/userworkout" element={<UserWorkout workouts={workouts} />} />
+          </Route>
 
-          {/* No Navbar */}
-          <Route path="/setup" element={<SetUp />} />
-          <Route path="/startyourjourney" element={<StartYourJourney />} />
-          <Route path="/whatsyourgoal" element={<WhatsYourGoal />} />
-          <Route path="/setyourgrind" element={<SetYourGrind />} />
-          <Route path="/gender" element={<GenderWar />} />
-          {/* <Route path="/template" element={<Template />} /> */}
-          {/* <Route path="/uielements" element={<UIElements />} /> */}
-          <Route path="/userworkout" element={<UserWorkout />} />
-        </Route>
-
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </>
   );
 }
