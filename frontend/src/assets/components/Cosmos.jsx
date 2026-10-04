@@ -47,7 +47,7 @@ export const AuthLayout = ({ title, children }) => {
             '& .MuiTextField-root': { mb: 2, '@media (max-width:600px)': { mb: 1 } },
             '& .MuiButton-root': { mt: 3 },
           }}>
-          <h2 className="font-cthulhumbus my-8 max-w-3xl bg-linear-to-br from-white to-gray-400 bg-clip-text text-center text-3xl leading-tight font-medium text-transparent sm:text-5xl/none md:text-6xl/none">
+          <h2 className="font-cthulhumbus my-8 max-w-3xl bg-linear-to-br from-white to-gray-400 bg-clip-text text-center text-3xl/tight font-medium text-transparent sm:text-5xl/none md:text-6xl/none">
             {title}
           </h2>
           {children}

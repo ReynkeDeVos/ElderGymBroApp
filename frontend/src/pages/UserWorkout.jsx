@@ -51,7 +51,7 @@ const UserWorkout = ({ workouts }) => {
 
   return (
     <div className="font-cthulhumbus flex min-h-screen flex-col items-center bg-linear-to-br from-black to-blue-950 pt-0">
-      <div className="fixed top-0 right-0 left-0 z-50 mx-auto max-w-2xl bg-black p-0 text-center text-white shadow-md">
+      <div className="fixed inset-x-0 top-0 z-50 mx-auto max-w-2xl bg-black p-0 text-center text-white shadow-md">
         <div className="flex items-center justify-center">
           <span className="mr-2">Karma</span>
           <progress className="progress progress-accent w-56" value={karmaPoints} max="100"></progress>
@@ -95,7 +95,7 @@ const UserWorkout = ({ workouts }) => {
             <h2 className="text-center text-2xl font-bold text-green-500">Well done!</h2>
             <p className="mt-4 text-center text-green-500">You have completed all exercises.</p>
             <p className="pb-4 text-center text-green-500">Total Karma Points Collected: {karmaPoints}</p>
-            <img src={doneImage} alt="Well done" className="mx-auto mb-4 h-32 w-32" />
+            <img src={doneImage} alt="Well done" className="mx-auto mb-4 size-32" />
             <button className="mt-6 w-full rounded-md bg-green-500 py-2 text-white" onClick={() => navigate('/home')}>
               Completed
             </button>

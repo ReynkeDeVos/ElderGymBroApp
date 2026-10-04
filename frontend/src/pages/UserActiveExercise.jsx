@@ -17,7 +17,7 @@ const UserActiveExercise = ({ exercise, isCompleted, onComplete, onSkip }) => {
   return (
     <div
       className={`m-4 border-4 border-solid ${isCompleted ? 'border-gray-500 bg-gray-300' : 'border-teal-800 bg-zinc-800'} font-cthulhumbus rounded-lg p-4 text-white shadow-md`}>
-      <h2 className={`${isCompleted ? 'text-gray-500' : 'text-teal-500'} pt-2 pb-2 pl-2 text-center text-lg`}>
+      <h2 className={`${isCompleted ? 'text-gray-500' : 'text-teal-500'} py-2 pl-2 text-center text-lg`}>
         {exercise.name}
       </h2>
       <form
@@ -73,7 +73,7 @@ const UserActiveExercise = ({ exercise, isCompleted, onComplete, onSkip }) => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75">
           <div className="w-full max-w-sm rounded-lg bg-white p-6 shadow-lg">
             <h2 className="text-center text-2xl font-bold text-red-500">Are you sure to skip this workout?</h2>
-            <img src={skippingImage} alt="Skipping" className="mx-auto my-4 h-32 w-32" />
+            <img src={skippingImage} alt="Skipping" className="mx-auto my-4 size-32" />
             <div className="flex justify-center space-x-4">
               <button className="rounded-md bg-red-500 px-4 py-2 text-white" onClick={() => setShowSkipModal(false)}>
                 No, continue

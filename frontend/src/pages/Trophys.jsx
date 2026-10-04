@@ -53,7 +53,7 @@ const Trophys = () => {
   return (
     <div className="min-h-screen bg-linear-to-br from-black to-blue-950 pt-20">
       <div className="flex flex-row justify-center">
-        <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text py-2 text-center text-3xl leading-tight font-medium text-transparent sm:py-4 md:pt-8 md:text-4xl/10">
+        <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text py-2 text-center text-3xl/tight font-medium text-transparent sm:py-4 md:pt-8 md:text-4xl/10">
           Trophies
         </h2>
       </div>
@@ -70,7 +70,7 @@ const Trophys = () => {
         </Box>
       </div>
 
-      <div className="mt-8 mb-16 grid grid-cols-2 gap-x-4 gap-y-4">
+      <div className="mt-8 mb-16 grid grid-cols-2 gap-4">
         {achievements.map((achievement) => (
           <div
             key={achievement.id}
@@ -79,17 +79,14 @@ const Trophys = () => {
             <img
               src={achievement.imageUrl}
               alt={achievement.name}
-              className={`mb-2 h-32 w-32 rounded-full ring-4 ring-pink-800 ring-offset-teal-800 ${unlocked.includes(achievement.id) ? '' : 'opacity-30 ring-gray-700'}`}
+              className={`mb-2 size-32 rounded-full ring-4 ring-pink-800 ring-offset-teal-800 ${unlocked.includes(achievement.id) ? '' : 'opacity-30 ring-gray-700'}`}
             />
             <span className="font-cthulhumbus text-center text-sm">{achievement.name}</span>
           </div>
         ))}
       </div>
 
-      <Modal
-        open={!!selected}
-        onClose={() => setSelected(null)}
-        className="flex h-full w-full items-end justify-center">
+      <Modal open={!!selected} onClose={() => setSelected(null)} className="flex size-full items-end justify-center">
         <Box
           sx={{
             px: 4,

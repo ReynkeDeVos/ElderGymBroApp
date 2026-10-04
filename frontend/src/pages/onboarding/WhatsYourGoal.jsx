@@ -32,7 +32,7 @@ function WhatsYourGoal() {
     <div className="min-h-svh bg-linear-to-br from-black to-blue-950 text-gray-200">
       <BackLink to="/setyourgrind" />
       <div className="flex flex-row justify-center">
-        <h1 className="font-cthulhumbus bg-linear-to-br from-white to-gray-400 bg-clip-text p-2 text-center text-2xl leading-tight font-medium text-transparent sm:text-3xl/9 md:text-4xl/10">
+        <h1 className="font-cthulhumbus bg-linear-to-br from-white to-gray-400 bg-clip-text p-2 text-center text-2xl/tight font-medium text-transparent sm:text-3xl/9 md:text-4xl/10">
           What&apos;s your goal
         </h1>
       </div>
@@ -84,7 +84,7 @@ function WhatsYourGoal() {
         </div>
       )}
 
-      <div className="flex flex-col pt-2 pb-2">
+      <div className="flex flex-col py-2">
         <OnboardingSteps />
       </div>
     </div>
