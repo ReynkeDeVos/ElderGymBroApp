@@ -22,9 +22,18 @@
     font-family: 'JmhCthulhumbus';
     src: url('./assets/fonts/jmh-cthulhumbus.cthulhumbus-regular.otf') format('opentype');
   }
+
+  /* Tailwind v4 no longer gives buttons a pointer cursor; keep the v3 behaviour */
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
-/* react-slick: dim and shrink the slides around the centred one */
+/* react-slick: dim and shrink the slides around the centred one (clicking one selects it) */
+.slick-slide:not(.slick-center) {
+  cursor: pointer;
+}
 .slick-slide:not(.slick-center) .carousel-item img {
   transform: scale(0.8);
   opacity: 0.6;

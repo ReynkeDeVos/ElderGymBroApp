@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
 import Confetti from 'react-confetti';
 import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthProvider';
+import { api } from '../utils/api';
 import Carousel from '../assets/components/Carousel';
 import UserActiveExercise from './UserActiveExercise';
 import { exerciseImage } from '../utils/images';
@@ -27,31 +27,30 @@ const UserWorkout = ({ workouts }) => {
   // Mark the current exercise done and move on to the next one
   const finishExercise = () => {
     if (!completed.includes(selectedIndex)) setCompleted([...completed, selectedIndex]);
-    if (selectedIndex < exercises.length - 1) {
-      sliderRef.current.slickGoTo(selectedIndex + 1);
-      setSelectedIndex(selectedIndex + 1);
-    }
+    if (selectedIndex < exercises.length - 1) sliderRef.current.slickGoTo(selectedIndex + 1);
   };
 
   const completeExercise = async (sets) => {
     try {
-      const { data } = await axios.post(`/me/workouttracking/addExerciseProgress/${activeWorkout.id}`, {
-        exerciseId: exercise.id,
-        exerciseName: exercise.name,
-        sets,
+      const data = await api(`/me/workouttracking/addExerciseProgress/${activeWorkout.id}`, {
+        method: 'POST',
+        body: {
+          exerciseId: exercise.id,
+          exerciseName: exercise.name,
+          sets,
+        },
       });
       setKarmaPoints(karmaPoints + data.karma);
       toast.success(`✨ ${data.karma} dark blessings received!`, { autoClose: 2000 });
       finishExercise();
-    } catch (error) {
-      console.error(error);
+    } catch {
       toast.error('Could not save this exercise');
     }
   };
 
   return (
     <div className="font-cthulhumbus flex min-h-screen flex-col items-center bg-linear-to-br from-black to-blue-950 pt-0">
-      <div className="fixed top-0 right-0 left-0 z-50 bg-black p-0 text-center text-white shadow-md">
+      <div className="fixed inset-x-0 top-0 z-50 mx-auto max-w-2xl bg-black p-0 text-center text-white shadow-md">
         <div className="flex items-center justify-center">
           <span className="mr-2">Karma</span>
           <progress className="progress progress-accent w-56" value={karmaPoints} max="100"></progress>
@@ -61,7 +60,7 @@ const UserWorkout = ({ workouts }) => {
       <div className="mt-6 w-full max-w-screen-sm">
         <h2 className="font-cthulhumbus px-4 py-2 text-center text-xl text-white">Exercise List</h2>
         <div className="pb-6">
-          <Carousel className="max-w-full" ref={sliderRef} afterChange={setSelectedIndex}>
+          <Carousel className="max-w-full" ref={sliderRef} beforeChange={(_, next) => setSelectedIndex(next)}>
             {exercises.map((ex, index) => (
               <div key={ex.id} className="carousel-item flex flex-col items-center px-2">
                 <img
@@ -95,7 +94,7 @@ const UserWorkout = ({ workouts }) => {
             <h2 className="text-center text-2xl font-bold text-green-500">Well done!</h2>
             <p className="mt-4 text-center text-green-500">You have completed all exercises.</p>
             <p className="pb-4 text-center text-green-500">Total Karma Points Collected: {karmaPoints}</p>
-            <img src={doneImage} alt="Well done" className="mx-auto mb-4 h-32 w-32" />
+            <img src={doneImage} alt="Well done" className="mx-auto mb-4 size-32" />
             <button className="mt-6 w-full rounded-md bg-green-500 py-2 text-white" onClick={() => navigate('/home')}>
               Completed
             </button>

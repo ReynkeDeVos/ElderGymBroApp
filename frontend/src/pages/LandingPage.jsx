@@ -40,8 +40,8 @@ const LandingPage = () => {
       style={{ backgroundImage }}
       className="relative grid min-h-svh place-content-center place-items-center overflow-hidden bg-gray-950 px-4 pt-5 text-gray-200 md:pt-10">
       <div className="mb-2 flex flex-row justify-evenly space-x-10">
-        <img src={logoImage} alt="Logo" className="h-16 w-16" />
-        <h1 className="font-cthulhumbus max-w-3xl bg-linear-to-br from-white to-gray-400 bg-clip-text text-center text-2xl leading-tight font-medium text-transparent sm:text-5xl/none md:text-6xl/none">
+        <img src={logoImage} alt="Logo" className="size-16" />
+        <h1 className="font-cthulhumbus max-w-3xl bg-linear-to-br from-white to-gray-400 bg-clip-text text-center text-2xl/tight font-medium text-transparent sm:text-5xl/none md:text-6xl/none">
           Train Like an <br />
           Ancient God
         </h1>
@@ -67,7 +67,7 @@ const LandingPage = () => {
       </div>
       <Starfield />
       <div className="px-8 text-slate-50 md:py-4">
-        <div className="relative -ml-[100px] h-[450px] w-[350px] scale-75 md:-ml-[175px]">
+        <div className="relative ml-[-100px] h-[450px] w-[350px] scale-75 md:ml-[-175px]">
           {testimonials.map((t, i) => (
             <Card key={t.author} {...t} handleShuffle={handleShuffle} position={order[i]} />
           ))}
@@ -107,7 +107,7 @@ const Card = ({ handleShuffle, testimonial, position, imgUrl, author }) => {
       <img
         src={imgUrl}
         alt={`Image of ${author}`}
-        className="pointer-events-none mx-auto h-32 w-32 rounded-full border-2 border-slate-700 bg-slate-200 object-cover"
+        className="pointer-events-none mx-auto size-32 rounded-full border-2 border-slate-700 bg-slate-200 object-cover"
       />
       <span className="text-center text-2xl text-slate-400 italic">&quot;{testimonial}&quot;</span>
       <span className="text-center font-medium text-indigo-400">{author}</span>

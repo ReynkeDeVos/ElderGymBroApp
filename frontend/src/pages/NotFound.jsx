@@ -11,7 +11,7 @@ function NotFound() {
         Home
       </button>
       <div className="flex flex-row justify-center">
-        <h1 className="font-cthulhumbus bg-linear-to-br from-white to-gray-400 bg-clip-text p-2 text-center text-4xl leading-tight font-medium text-transparent sm:text-3xl/9 md:text-4xl/10">
+        <h1 className="font-cthulhumbus bg-linear-to-br from-white to-gray-400 bg-clip-text p-2 text-center text-4xl/tight font-medium text-transparent sm:text-3xl/9 md:text-4xl/10">
           404 - Not Found
         </h1>
       </div>

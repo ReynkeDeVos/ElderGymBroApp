@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router';
-import axios from 'axios';
-import { Slide, ToastContainer } from 'react-toastify';
+import { Slide, ToastContainer, toast } from 'react-toastify';
+import { api } from './utils/api';
 import LandingPage from './pages/LandingPage';
 import Profile from './pages/Profile';
 import StartYourJourney from './pages/onboarding/StartYourJourney';
@@ -32,10 +32,9 @@ function App() {
   const showBottomNav = showUserBar || pathname === '/profile';
 
   useEffect(() => {
-    axios
-      .get('/hardcodedworkouts')
-      .then((res) => setWorkouts(res.data))
-      .catch(console.error);
+    api('/hardcodedworkouts')
+      .then(setWorkouts)
+      .catch(() => toast.error('Could not load the workouts'));
   }, []);
 
   return (

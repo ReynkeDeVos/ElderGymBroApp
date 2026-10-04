@@ -6,6 +6,7 @@ import 'slick-carousel/slick/slick-theme.css';
 const Slider = SlickSlider.default ?? SlickSlider;
 
 // One centred slide with its neighbours peeking in; extra props go to react-slick.
+// Use beforeChange to react to slide changes: react-slick drops afterChange when it re-renders mid-animation.
 const Carousel = ({ children, ...props }) => (
   <Slider dots infinite={false} speed={500} centerMode centerPadding="20%" arrows={false} focusOnSelect {...props}>
     {children}

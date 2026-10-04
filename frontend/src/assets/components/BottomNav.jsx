@@ -15,7 +15,7 @@ const navItems = [
 const BottomNav = () => {
   const { pathname } = useLocation();
   return (
-    <nav className="fixed bottom-0 z-50 flex h-16 w-full items-center justify-around rounded-t-3xl bg-gray-900 shadow-md">
+    <nav className="fixed inset-x-0 bottom-0 z-50 mx-auto flex h-16 w-full max-w-2xl items-center justify-around rounded-t-3xl bg-gray-900 shadow-md">
       {navItems.map((item) => (
         <Link
           key={item.path}

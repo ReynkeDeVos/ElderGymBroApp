@@ -595,7 +595,8 @@
           "Repeat the movement for the prescribed amount of repetitions.",
           "When you are done, place the bar back in the rack."
         ],
-        "category": "strength"
+        "category": "strength",
+        "sets": 3
       },
       {
         "id": 2,
@@ -613,7 +614,8 @@
           "Repeat the movement for the prescribed amount of repetitions.",
           "When you are done, place the bar back in the rack."
         ],
-        "category": "strength"
+        "category": "strength",
+        "sets": 3
       },
       {
         "id": 3,
@@ -631,7 +633,8 @@
           "Return back to the starting position slowly as you inhale until your chest muscles are fully stretched.",
           "Repeat for the recommended amount of repetitions."
         ],
-        "category": "strength"
+        "category": "strength",
+        "sets": 2
       },
       {
         "id": 4,
@@ -649,7 +652,8 @@
           "Then lift the barbell back to the starting position using your shoulders while exhaling.",
           "Repeat for the recommended amount of repetitions."
         ],
-        "category": "strength"
+        "category": "strength",
+        "sets": 2
       },
       {
         "id": 5,
@@ -666,7 +670,8 @@
           "Lower the dumbbells back down slowly to the starting position as you inhale.",
           "Repeat for the recommended amount of repetitions."
         ],
-        "category": "strength"
+        "category": "strength",
+        "sets": 2
       },
       {
         "id": 6,
@@ -684,7 +689,8 @@
           "Using the triceps to push the bar back up, press it back to the starting position by extending the elbows as you exhale.",
           "Repeat."
         ],
-        "category": "strength"
+        "category": "strength",
+        "sets": 3
       },
       {
         "id": 7,
@@ -702,7 +708,8 @@
           "Once you feel the stretch in your triceps, slowly raise the bar back to the starting position by extending your elbows.",
           "Repeat for the recommended amount of repetitions."
         ],
-        "category": "strength"
+        "category": "strength",
+        "sets": 3
       },
       {
         "id": 8,
@@ -721,7 +728,8 @@
           "After the one second contraction, begin to come down slowly again to the starting position as you inhale.",
           "Repeat for the recommended amount of repetitions."
         ],
-        "category": "strength"
+        "category": "strength",
+        "sets": 3
       },
       {
         "id": 9,
@@ -738,7 +746,8 @@
           "As you keep your legs extended, straight as possible with your knees slightly bent but locked raise your legs until they make a 90-degree angle with the floor. Exhale as you perform this portion of the movement and hold the contraction at the top for a second.",
           "Now, as you inhale, slowly lower your legs back down to the starting position."
         ],
-        "category": "strength"
+        "category": "strength",
+        "sets": 3
       },
       {
         "id": 10,
@@ -755,7 +764,8 @@
           "Slowly lower the weight back to the original position as you inhale, ensuring that you do not go past the 90-degree angle limit.",
           "Repeat for the recommended amount of times."
         ],
-        "category": "strength"
+        "category": "strength",
+        "sets": 3
       },
       {
         "id": 11,
@@ -773,7 +783,8 @@
           "Pushing mainly with the heels of your feet and using the quadriceps go back to the starting position as you exhale.",
           "Repeat for the recommended amount of repetitions and ensure to lock the safety pins properly once you are done. You do not want that platform falling on you fully loaded."
         ],
-        "category": "strength"
+        "category": "strength",
+        "sets": 3
       },
       {
         "id": 12,
@@ -790,7 +801,8 @@
           "As you exhale, curl your legs up as far as possible without lifting the upper legs from the pad. Once you hit the fully contracted position, hold it for a second.",
           "As you inhale, bring the legs back to the initial position. Repeat for the recommended amount of repetitions."
         ],
-        "category": "strength"
+        "category": "strength",
+        "sets": 2
       },
       {
         "id": 13,
@@ -808,7 +820,8 @@
           "Go back slowly to the starting position as you breathe in by lowering your heels as you bend the ankles until calves are stretched.",
           "Repeat for the recommended amount of repetitions."
         ],
-        "category": "strength"
+        "category": "strength",
+        "sets": 2
       },
       {
         "id": 14,
@@ -827,7 +840,8 @@
           "After a second at the contracted position squeezing your shoulder blades together, slowly raise the bar back to the starting position when your arms are fully extended and the lats are fully stretched. Inhale during this portion of the movement.",
           "Repeat this motion for the prescribed amount of repetitions."
         ],
-        "category": "strength"
+        "category": "strength",
+        "sets": 3
       },
       {
         "id": 15,
@@ -844,7 +858,8 @@
           "Lift the dumbbells up to your sides, keeping your elbows close to your body, until your elbows are at a 90-degree angle.",
           "Lower the dumbbells back down to the starting position and repeat for the recommended amount of repetitions."
         ],
-        "category": "strength"
+        "category": "strength",
+        "sets": 3
       },
       {
         "id": 16,
@@ -863,7 +878,8 @@
           "Slowly raise your torso back to the initial position as you inhale. Tip: Avoid the temptation to arch your back past a straight line. Also, do not swing the torso at any time in order to protect the back from injury.",
           "Repeat for the recommended amount of repetitions."
         ],
-        "category": "strength"
+        "category": "strength",
+        "sets": 2
       },
       {
         "id": 17,
@@ -880,7 +896,8 @@
           "Slowly begin to bring the curl bar back to starting position as your breathe in.",
           "Repeat for the recommended amount of repetitions."
         ],
-        "category": "strength"
+        "category": "strength",
+        "sets": 3
       },
       {
         "id": 18,
@@ -898,7 +915,8 @@
           "As you exhale, use the biceps to curl the weight up until your biceps is fully contracted and the bar is at shoulder height. Squeeze the biceps hard and hold this position for a second.",
           "Repeat for the recommended amount of repetitions."
         ],
-        "category": "strength"
+        "category": "strength",
+        "sets": 3
       }
     ],
     "splits": [

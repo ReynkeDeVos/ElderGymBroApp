@@ -28,7 +28,7 @@ function SetUp() {
         <br /> Don&apos;t give up!
       </p>
       <div className="mt-4 bg-teal-800 p-4">
-        <p className="font-cthulhumbus text-center text-sm leading-7 tracking-wide text-slate-300">
+        <p className="font-cthulhumbus text-center text-sm/7 tracking-wide text-slate-300">
           &quot;Embrace the struggle, for true power awakens in perseverance. The void rewards the relentless!&quot;
         </p>
       </div>

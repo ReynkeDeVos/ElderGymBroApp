@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
+import { toast } from 'react-toastify';
+import { api } from '../../utils/api';
 import { Box, Modal } from '@mui/material';
 import maleImage from '../../assets/images/gender/male.jpeg';
 import femaleImage from '../../assets/images/gender/female.jpg';
@@ -47,10 +48,10 @@ const GenderWar = () => {
 
   const choose = async () => {
     try {
-      await axios.patch('/profile/me/gender', { gender: selected.value });
+      await api('/profile/me/gender', { method: 'PATCH', body: { gender: selected.value } });
       navigate('/setup');
-    } catch (error) {
-      console.error(error);
+    } catch {
+      toast.error('Could not save your choice');
     }
   };
 
@@ -58,7 +59,7 @@ const GenderWar = () => {
     <div className="min-h-svh bg-linear-to-br from-black to-blue-950 text-gray-200">
       <BackLink to="/whatsyourgoal" />
       <div className="flex flex-row justify-center">
-        <h2 className="font-cthulhumbus bg-linear-to-br from-white to-gray-400 bg-clip-text p-2 text-center text-2xl leading-tight font-medium text-transparent sm:text-3xl/9 md:text-4xl/10">
+        <h2 className="font-cthulhumbus bg-linear-to-br from-white to-gray-400 bg-clip-text p-2 text-center text-2xl/tight font-medium text-transparent sm:text-3xl/9 md:text-4xl/10">
           Choose your gender
         </h2>
       </div>

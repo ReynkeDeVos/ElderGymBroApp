@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
+import { api } from '../utils/api';
 
 const AuthContext = createContext();
 
@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
   // Fetches the current user (the auth cookie is httpOnly, so the API is the only way to know).
   const checkUser = useCallback(async () => {
     try {
-      const { data } = await axios.get('/profile/me');
+      const data = await api('/profile/me');
       setIsLoggedIn(true);
       setUserData(data);
       return data;

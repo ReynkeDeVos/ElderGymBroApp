@@ -13,17 +13,17 @@ const UserBar = () => {
   const { userData, isLoggedIn } = useAuth();
 
   return (
-    <nav className="font-cthulhumbus fixed top-0 z-50 flex w-full cursor-default items-center justify-between bg-gray-900 py-2 shadow-md select-none">
+    <nav className="font-cthulhumbus fixed inset-x-0 top-0 z-50 mx-auto flex w-full max-w-2xl cursor-default items-center justify-between bg-gray-900 py-2 shadow-md select-none">
       <div className="grid w-full grid-cols-3">
         <div className="flex items-center">
           <img src={logoImage} alt="App Logo" className="mx-auto ml-5 w-10 sm:w-12 md:mx-auto md:w-24" />
         </div>
         {isLoggedIn ? (
           <div className="flex flex-col items-center justify-center">
-            <div className="font-cthulhumbus mt-1 cursor-default bg-linear-to-br from-teal-500 to-green-800 bg-clip-text text-center text-xl leading-tight font-medium text-transparent sm:text-2xl/8 md:text-3xl/9">
+            <div className="font-cthulhumbus mt-1 cursor-default bg-linear-to-br from-teal-500 to-green-800 bg-clip-text text-center text-xl/tight font-medium text-transparent sm:text-2xl/8 md:text-3xl/9">
               {userData.username || 'No username'}
             </div>
-            <div className="font-cthulhumbus cursor-default bg-linear-to-br from-yellow-950 to-yellow-500 bg-clip-text text-center text-xl leading-tight font-medium text-nowrap text-transparent sm:text-2xl/8 md:text-3xl/9">
+            <div className="font-cthulhumbus cursor-default bg-linear-to-br from-yellow-950 to-yellow-500 bg-clip-text text-center text-xl/tight font-medium text-nowrap text-transparent sm:text-2xl/8 md:text-3xl/9">
               {userData.awards?.title || 'No title'}
             </div>
           </div>

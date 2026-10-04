@@ -60,7 +60,7 @@ const Workouts = ({ workouts }) => {
 
   return (
     <div className="container mx-auto mb-8 flex min-h-svh flex-col items-center bg-linear-to-br from-black to-blue-950 p-4 pt-20">
-      <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text py-2 text-center text-3xl leading-tight font-medium text-transparent sm:py-4 md:pt-8 md:text-4xl/10">
+      <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text py-2 text-center text-3xl/tight font-medium text-transparent sm:py-4 md:pt-8 md:text-4xl/10">
         Workout Plans
       </h2>
 
@@ -91,7 +91,7 @@ const Workouts = ({ workouts }) => {
                     ? plan.splits.map((split) => (
                         <div
                           key={split.day}
-                          className="mt-2 mb-2 rounded-lg border-4 border-teal-800 bg-zinc-700 p-4 shadow-md">
+                          className="my-2 rounded-lg border-4 border-teal-800 bg-zinc-700 p-4 shadow-md">
                           <h6 className="font-cthulhumbus text-center text-xl font-semibold text-teal-500 capitalize">
                             Day {split.day}
                           </h6>
@@ -103,7 +103,7 @@ const Workouts = ({ workouts }) => {
                                 return (
                                   <Exercise
                                     key={id}
-                                    className="mt-3 mb-3 text-slate-300"
+                                    className="my-3 text-slate-300"
                                     exercise={plan.exercises.find((e) => e.id === ex.id)}
                                     open={openExercise === id}
                                     onToggle={() => toggle(setOpenExercise, id)}
@@ -116,7 +116,7 @@ const Workouts = ({ workouts }) => {
                     : plan.exercises.map((exercise) => (
                         <Exercise
                           key={exercise.id}
-                          className="mt-2 mb-2 rounded-lg border-4 border-solid border-teal-800 bg-zinc-700 p-2 shadow-md"
+                          className="my-2 rounded-lg border-4 border-solid border-teal-800 bg-zinc-700 p-2 shadow-md"
                           exercise={exercise}
                           open={openExercise === exercise.id}
                           onToggle={() => toggle(setOpenExercise, exercise.id)}

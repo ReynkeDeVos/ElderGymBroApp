@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
+import { toast } from 'react-toastify';
+import { api } from '../../utils/api';
 import { Box, Button, Modal, Typography } from '@mui/material';
 import setgrind from '../../assets/images/setgrind.jpeg';
 import beginner from '../../assets/images/beginner.jpeg';
@@ -28,10 +29,10 @@ function SetYourGrind() {
 
   const handleChoose = async () => {
     try {
-      await axios.patch('/profile/me/fitnessLevel', { fitnessLevel: selected.level });
+      await api('/profile/me/fitnessLevel', { method: 'PATCH', body: { fitnessLevel: selected.level } });
       navigate('/whatsyourgoal');
-    } catch (error) {
-      console.error('Error updating fitness level:', error);
+    } catch {
+      toast.error('Could not save your level');
     }
   };
 
@@ -39,7 +40,7 @@ function SetYourGrind() {
     <div className="min-h-svh bg-linear-to-br from-black to-blue-950 text-gray-200">
       <BackLink to="/startyourjourney" />
       <div className="flex flex-row justify-center">
-        <h2 className="font-cthulhumbus bg-linear-to-br from-white to-gray-400 bg-clip-text p-2 text-center text-2xl leading-tight font-medium text-transparent sm:text-3xl/9 md:text-4xl/10">
+        <h2 className="font-cthulhumbus bg-linear-to-br from-white to-gray-400 bg-clip-text p-2 text-center text-2xl/tight font-medium text-transparent sm:text-3xl/9 md:text-4xl/10">
           Set Your Grind
         </h2>
       </div>
@@ -68,6 +69,7 @@ function SetYourGrind() {
             left: '50%',
             transform: 'translate(-50%, -50%)',
             width: '90%',
+            maxWidth: 600,
             bgcolor: 'darkslategray',
             boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
             p: 1.5,

@@ -11,7 +11,14 @@ const PrivateRoute = () => {
   }, [checkUser]);
 
   if (loading) return <div>Loading...</div>;
-  return isLoggedIn ? <Outlet /> : <Navigate to="/accessdenied" />;
+  // Mobile-first app: on wide screens keep it a centred column
+  return isLoggedIn ? (
+    <div className="mx-auto max-w-2xl">
+      <Outlet />
+    </div>
+  ) : (
+    <Navigate to="/accessdenied" />
+  );
 };
 
 export default PrivateRoute;

@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
+import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthProvider';
+import { api } from '../utils/api';
 import Carousel from '../assets/components/Carousel';
 import { workoutImage } from '../utils/images';
 import firstLoginImage from '../assets/images/firstlogin.jpeg';
@@ -19,6 +20,8 @@ const today = () => new Date().toISOString().slice(0, 10);
 const Dashboard = ({ workouts }) => {
   const { userData, setUserData, checkUser } = useAuth();
   const navigate = useNavigate();
+  // Local pick wins over userData, which the refresh below may overwrite with an older value
+  const [pickedId, setPickedId] = useState(null);
 
   // Pick up karma and progress earned since the last visit
   useEffect(() => {
@@ -27,7 +30,7 @@ const Dashboard = ({ workouts }) => {
 
   const selectedIndex = Math.max(
     0,
-    workouts.findIndex((w) => w.id === Number(userData.activeWorkoutId)),
+    workouts.findIndex((w) => w.id === (pickedId ?? Number(userData.activeWorkoutId))),
   );
   const activeWorkout = workouts[selectedIndex];
   const doneToday =
@@ -38,39 +41,43 @@ const Dashboard = ({ workouts }) => {
 
   const selectWorkout = async (index) => {
     const workoutId = workouts[index].id;
+    setPickedId(workoutId);
     setUserData((user) => ({ ...user, activeWorkoutId: String(workoutId) }));
     try {
-      await axios.patch('/me/workouttracking/setActiveWorkout', { workoutId });
-    } catch (error) {
-      console.error(error);
+      await api('/me/workouttracking/setActiveWorkout', { method: 'PATCH', body: { workoutId } });
+    } catch {
+      toast.error('Could not save your workout choice');
     }
   };
 
   const startWorkout = async () => {
     try {
-      await axios.post('/me/workouttracking/addWorkoutProgress', { workoutId: activeWorkout.id });
+      await api('/me/workouttracking/addWorkoutProgress', { method: 'POST', body: { workoutId: activeWorkout.id } });
       navigate('/userworkout');
-    } catch (error) {
-      console.error(error);
+    } catch {
+      toast.error('Could not start the workout');
     }
   };
 
   return (
     <div className="container mx-auto flex min-h-screen flex-col bg-linear-to-br from-black to-blue-950 p-4 pb-24 text-white">
       <div className="mt-16 flex flex-col items-center justify-center">
-        <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text pt-2 text-center text-3xl leading-tight font-medium text-transparent md:pt-8 md:text-4xl/10">
+        <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text pt-2 text-center text-3xl/tight font-medium text-transparent md:pt-8 md:text-4xl/10">
           Welcome Dear <br /> {userData.fullName}!
         </h2>
         <hr className="my-4 w-full border-gray-500 opacity-50" />
 
         <div className="font-cthulhumbus flex w-full flex-col items-center px-4 pb-2">
           <div className="mt-0 w-full max-w-screen-sm">
-            <h2 className="font-cthulhumbus bg-linear-to-br from-white to-gray-400 bg-clip-text px-4 py-2 pt-2 text-center text-3xl leading-tight font-medium text-transparent md:text-4xl/10">
+            <h2 className="font-cthulhumbus bg-linear-to-br from-white to-gray-400 bg-clip-text px-4 py-2 pt-2 text-center text-3xl/tight font-medium text-transparent md:text-4xl/10">
               Choose your workout:
             </h2>
             <div className="pb-6">
               {activeWorkout ? (
-                <Carousel className="max-w-full" initialSlide={selectedIndex} afterChange={selectWorkout}>
+                <Carousel
+                  className="max-w-full"
+                  initialSlide={selectedIndex}
+                  beforeChange={(_, next) => selectWorkout(next)}>
                   {workouts.map((workout) => (
                     <div key={workout.id} className="carousel-item flex flex-col items-center px-2">
                       <img src={workoutImage(workout.name)} alt={workout.name} className="rounded-t-lg shadow-lg" />
@@ -101,7 +108,7 @@ const Dashboard = ({ workouts }) => {
 
         <div className="mt-8 w-full">
           <hr className="my-4 w-full border-gray-500 opacity-50" />
-          <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text text-center text-3xl leading-tight font-medium text-transparent md:text-4xl/10">
+          <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text text-center text-3xl/tight font-medium text-transparent md:text-4xl/10">
             Other Cultists&apos; Achievements
           </h2>
         </div>

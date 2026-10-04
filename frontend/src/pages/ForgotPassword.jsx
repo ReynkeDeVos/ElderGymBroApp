@@ -13,7 +13,7 @@ function ForgotPassword() {
     <div className="min-h-screen bg-gray-950 text-gray-200">
       <BackLink to="/" className="bg-gray-900" />
       <div className="mt-2 flex flex-row justify-center">
-        <h1 className="font-cthulhumbus p-2 text-center text-3xl leading-tight font-medium text-teal-800 sm:text-3xl/9 md:text-4xl/10">
+        <h1 className="font-cthulhumbus p-2 text-center text-3xl/tight font-medium text-teal-800 sm:text-3xl/9 md:text-4xl/10">
           Forgot Password
         </h1>
       </div>

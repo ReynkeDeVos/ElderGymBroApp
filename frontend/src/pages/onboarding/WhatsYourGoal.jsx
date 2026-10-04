@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
+import { toast } from 'react-toastify';
+import { api } from '../../utils/api';
 import growMuscleImage from '../../assets/images/growmuscle.jpg';
 import buildStaminaImage from '../../assets/images/buildupyourstamina.jpg';
 import maximizeStrengthImage from '../../assets/images/maximizeyourstrength.jpg';
@@ -21,10 +22,10 @@ function WhatsYourGoal() {
 
   const chooseAim = async () => {
     try {
-      await axios.patch('/profile/me/workoutAim', { workoutAim: activeCard.heading });
+      await api('/profile/me/workoutAim', { method: 'PATCH', body: { workoutAim: activeCard.heading } });
       navigate('/gender');
-    } catch (error) {
-      console.error(error);
+    } catch {
+      toast.error('Could not save your goal');
     }
   };
 
@@ -32,7 +33,7 @@ function WhatsYourGoal() {
     <div className="min-h-svh bg-linear-to-br from-black to-blue-950 text-gray-200">
       <BackLink to="/setyourgrind" />
       <div className="flex flex-row justify-center">
-        <h1 className="font-cthulhumbus bg-linear-to-br from-white to-gray-400 bg-clip-text p-2 text-center text-2xl leading-tight font-medium text-transparent sm:text-3xl/9 md:text-4xl/10">
+        <h1 className="font-cthulhumbus bg-linear-to-br from-white to-gray-400 bg-clip-text p-2 text-center text-2xl/tight font-medium text-transparent sm:text-3xl/9 md:text-4xl/10">
           What&apos;s your goal
         </h1>
       </div>
@@ -40,7 +41,7 @@ function WhatsYourGoal() {
       <div className="flex flex-wrap justify-center">
         <div className="grid grid-flow-row auto-rows-max grid-cols-2 gap-2 p-2">
           {cards.map((card) => (
-            <div key={card.heading} className="m-1 h-full" onClick={() => setActiveCard(card)}>
+            <div key={card.heading} className="m-1 h-full cursor-pointer" onClick={() => setActiveCard(card)}>
               <div className="h-auto transform rounded-t-lg border-4 border-solid border-teal-800 bg-linear-to-tr from-gray-900 via-pink-900 to-zinc-900 object-cover transition-transform duration-300 ease-in-out hover:scale-110">
                 <img src={card.image} alt={card.heading} className="h-80 w-56 rounded-sm object-cover object-top" />
                 <div className="flex h-auto grow flex-col items-center border-2 border-solid border-pink-800 p-2 text-white">
@@ -84,7 +85,7 @@ function WhatsYourGoal() {
         </div>
       )}
 
-      <div className="flex flex-col pt-2 pb-2">
+      <div className="flex flex-col py-2">
         <OnboardingSteps />
       </div>
     </div>

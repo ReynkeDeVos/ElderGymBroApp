@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
+import { api } from '../utils/api';
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthProvider';
@@ -26,22 +26,21 @@ const Profile = () => {
     const body = new FormData();
     body.append('avatar', e.target.files[0]);
     try {
-      const { data } = await axios.patch('/profile/me/avatar', body);
+      const data = await api('/profile/me/avatar', { method: 'PATCH', body });
       setUserData((user) => ({ ...user, avatar: data.avatar }));
-    } catch (error) {
-      console.error(error);
+    } catch {
       toast.error('Failed to upload avatar');
     }
   };
 
   const logOut = async () => {
     try {
-      await axios.post('/auth/logout');
+      await api('/auth/logout', { method: 'POST' });
       setIsLoggedIn(false);
       setUserData({});
       navigate('/login');
-    } catch (error) {
-      console.error('Logout failed', error);
+    } catch {
+      toast.error('Logout failed');
     }
   };
 
@@ -59,13 +58,12 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch('/profile/me/profileupdate', form);
+      await api('/profile/me/profileupdate', { method: 'PATCH', body: form });
       await checkUser();
       setForm(null);
     } catch (error) {
-      console.error('Failed to update profile', error);
       toast.error(
-        error.response?.status === 409
+        error.status === 409
           ? 'Username already exists. Please choose a different one.'
           : 'Failed to update profile. Please try again later.',
       );
@@ -76,7 +74,7 @@ const Profile = () => {
     return (
       <div className="min-h-screen bg-linear-to-br from-black to-blue-950 pt-20 text-gray-200">
         <div className="flex flex-row justify-center">
-          <h1 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text py-2 text-center text-3xl leading-tight font-medium text-transparent sm:py-4 md:pt-8 md:text-4xl/10">
+          <h1 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text py-2 text-center text-3xl/tight font-medium text-transparent sm:py-4 md:pt-8 md:text-4xl/10">
             Edit Profile
           </h1>
         </div>
@@ -129,7 +127,7 @@ const Profile = () => {
   return (
     <div className="min-h-screen bg-linear-to-br from-black to-blue-950 pt-20 text-gray-200">
       <div className="flex flex-row justify-center">
-        <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text py-2 text-center text-3xl leading-tight font-medium text-transparent sm:py-4 md:pt-8 md:text-4xl/10">
+        <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text py-2 text-center text-3xl/tight font-medium text-transparent sm:py-4 md:pt-8 md:text-4xl/10">
           Profile
         </h2>
       </div>
@@ -171,10 +169,10 @@ const Profile = () => {
             </div>
           </div>
 
-          <h1 className="font-cthulhumbus mt-4 cursor-default bg-linear-to-br from-yellow-950 to-yellow-500 bg-clip-text pt-4 text-center text-4xl leading-tight font-medium text-transparent sm:text-2xl/8 md:text-4xl/10">
+          <h1 className="font-cthulhumbus mt-4 cursor-default bg-linear-to-br from-yellow-950 to-yellow-500 bg-clip-text pt-4 text-center text-4xl/tight font-medium text-transparent sm:text-2xl/8 md:text-4xl/10">
             {userData.awards?.title || 'The infamous'}
           </h1>
-          <h1 className="font-cthulhumbus cursor-default bg-linear-to-br from-teal-500 to-green-800 bg-clip-text py-2 text-center text-3xl leading-tight font-medium text-transparent sm:text-4xl/10 md:text-5xl/none">
+          <h1 className="font-cthulhumbus cursor-default bg-linear-to-br from-teal-500 to-green-800 bg-clip-text py-2 text-center text-3xl/tight font-medium text-transparent sm:text-4xl/10 md:text-5xl/none">
             {userData.fullName || 'Lord of the Gym'}
           </h1>
         </div>
