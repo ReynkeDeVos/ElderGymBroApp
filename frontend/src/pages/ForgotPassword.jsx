@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Box, Button, TextField } from '@mui/material';
-import cthulupassword from '../assets/images/cthulupassword.png';
+import cthulupassword from '../assets/images/cthulupassword.avif';
 import { useRedirectIfLoggedIn } from '../context/AuthProvider';
 import { BackLink } from '../assets/components/Navigation';
 

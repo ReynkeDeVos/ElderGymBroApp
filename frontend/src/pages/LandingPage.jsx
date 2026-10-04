@@ -6,7 +6,7 @@ import landingPageImage from '../assets/images/landingPage.avif';
 import avatarImage from '../assets/images/avatar.avif';
 import avatarImage2 from '../assets/images/avatar2.avif';
 import avatarImage3 from '../assets/images/avatar3.avif';
-import logoImage from '../assets/icons/elderGymBroLogo.png';
+import logoImage from '../assets/icons/elderGymBroLogo.avif';
 import { useRedirectIfLoggedIn } from '../context/AuthProvider';
 import { Starfield, useAurora } from '../assets/components/Cosmos';
 

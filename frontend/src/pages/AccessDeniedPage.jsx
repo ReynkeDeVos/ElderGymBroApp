@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router';
 import { Button } from '@mui/material';
-import accessDeniedImage from '../assets/images/access-denied.jpg';
+import accessDeniedImage from '../assets/images/access-denied.avif';
 import { Starfield } from '../assets/components/Cosmos';
 
 function AccessDeniedPage() {

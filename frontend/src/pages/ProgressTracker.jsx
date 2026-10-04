@@ -12,7 +12,7 @@ import {
   Title,
   Tooltip,
 } from 'chart.js';
-import cthuluprogress from '../assets/images/ProgressTracking.png';
+import cthuluprogress from '../assets/images/ProgressTracking.avif';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 

@@ -4,7 +4,7 @@ import { api } from '../utils/api';
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthProvider';
-import logoutIcon from '../assets/icons/logout1.png';
+import logoutIcon from '../assets/icons/logout1.avif';
 
 const textFields = [
   ['fullName', 'Full Name', 'text'],
