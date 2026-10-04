@@ -14,7 +14,7 @@ Welcome to the **Elder Gym Bro App** 💪🔱, your Cthulhu-themed workout compa
 
 ## Hosted Version
 
-Explore the Elder Gym Bro App without the need for local setup. Visit our hosted version at [eldergymbro.netlify.app](https://eldergymbro.netlify.app/) for a fully functional experience that offers all the features of the local version. 🌐✨
+Explore the Elder Gym Bro App without the need for local setup. Visit our hosted version at [eldergymbroapp.netlify.app](https://eldergymbroapp.netlify.app/) for a fully functional experience that offers all the features of the local version. 🌐✨
 
 ## Technologies
 
