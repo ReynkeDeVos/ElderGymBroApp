@@ -7,7 +7,7 @@ import { api } from '../utils/api';
 import Carousel from '../assets/components/Carousel';
 import UserActiveExercise from './UserActiveExercise';
 import { exerciseImage } from '../utils/images';
-import doneImage from '../assets/images/finished.png';
+import doneImage from '../assets/images/finished.avif';
 
 const UserWorkout = ({ workouts }) => {
   const { userData } = useAuth();

@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import { api } from '../../utils/api';
-import growMuscleImage from '../../assets/images/growmuscle.jpg';
-import buildStaminaImage from '../../assets/images/buildupyourstamina.jpg';
-import maximizeStrengthImage from '../../assets/images/maximizeyourstrength.jpg';
-import weightGainImage from '../../assets/images/weightgain.jpeg';
+import growMuscleImage from '../../assets/images/growmuscle.avif';
+import buildStaminaImage from '../../assets/images/buildupyourstamina.avif';
+import maximizeStrengthImage from '../../assets/images/maximizeyourstrength.avif';
+import weightGainImage from '../../assets/images/weightgain.avif';
 import { BackLink, OnboardingSteps } from '../../assets/components/Navigation';
 
 // heading doubles as the workoutAim value stored on the server

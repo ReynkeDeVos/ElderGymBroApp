@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router';
 import NotFoundImage from '../assets/images/404.avif';
-import Shoggoth from '../assets/images/workouts/shoggoth.webp';
+import Shoggoth from '../assets/images/workouts/shoggoth.avif';
 
 function NotFound() {
   const navigate = useNavigate();

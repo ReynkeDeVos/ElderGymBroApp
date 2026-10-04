@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import { api } from '../../utils/api';
 import { Box, Button, Modal, Typography } from '@mui/material';
-import setgrind from '../../assets/images/setgrind.jpeg';
-import beginner from '../../assets/images/beginner.jpeg';
-import intermediate from '../../assets/images/intermediate.jpeg';
-import advanced from '../../assets/images/advanced.jpeg';
+import setgrind from '../../assets/images/setgrind.avif';
+import beginner from '../../assets/images/beginner.avif';
+import intermediate from '../../assets/images/intermediate.avif';
+import advanced from '../../assets/images/advanced.avif';
 import { BackLink, OnboardingSteps } from '../../assets/components/Navigation';
 
 const cards = [

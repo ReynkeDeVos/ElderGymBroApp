@@ -3,13 +3,13 @@ import { toast } from 'react-toastify';
 import { Box, IconButton, LinearProgress, Modal, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import trophyIcon from '../assets/icons/trophy.svg';
-import cuteCthulhu from '../assets/images/cuteCthulhu.png';
-import firstWorkoutDone from '../assets/images/firstworkoutdone.png';
-import trainingNight from '../assets/images/trainingnight.jpeg';
-import chestDay from '../assets/images/Chest1.jpeg';
-import weekendWorkout from '../assets/images/weekendworkout.jpeg';
-import firstPlanCreated from '../assets/images/firstplancreated.jpeg';
-import firstLogin from '../assets/images/firstlogin.jpeg';
+import cuteCthulhu from '../assets/images/cuteCthulhu.avif';
+import firstWorkoutDone from '../assets/images/firstworkoutdone.avif';
+import trainingNight from '../assets/images/trainingnight.avif';
+import chestDay from '../assets/images/Chest1.avif';
+import weekendWorkout from '../assets/images/weekendworkout.avif';
+import firstPlanCreated from '../assets/images/firstplancreated.avif';
+import firstLogin from '../assets/images/firstlogin.avif';
 
 const achievements = [
   { id: 1, name: 'Call of Cthulhu', imageUrl: firstLogin, requirements: 'Log into ELDERGYMBRO for the first time' },

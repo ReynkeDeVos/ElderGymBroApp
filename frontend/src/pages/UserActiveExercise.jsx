@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import skippingImage from '../assets/images/skipping.png';
+import skippingImage from '../assets/images/skipping.avif';
 
 const inputClass =
   'block w-full rounded-md border-0 bg-white py-1.5 pr-20 pl-7 text-gray-900 ring-1 ring-gray-300 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6';

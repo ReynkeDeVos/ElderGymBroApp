@@ -1,6 +1,6 @@
 import { CircularProgressbar } from 'react-circular-progressbar';
 import { useAuth } from '../../context/AuthProvider';
-import logoImage from '../icons/elderGymBroLogo.png';
+import logoImage from '../icons/elderGymBroLogo.avif';
 
 const progressStyles = {
   root: { width: '100%' },

@@ -1,5 +1,5 @@
-const workoutImages = import.meta.glob('../assets/images/workouts/*.jpg', { eager: true, import: 'default' });
-const exerciseImages = import.meta.glob('../assets/images/Exercises/*/images/0.jpg', {
+const workoutImages = import.meta.glob('../assets/images/workouts/*.avif', { eager: true, import: 'default' });
+const exerciseImages = import.meta.glob('../assets/images/Exercises/*/images/0.avif', {
   eager: true,
   import: 'default',
 });

@@ -5,9 +5,9 @@ import { useAuth } from '../context/AuthProvider';
 import { api } from '../utils/api';
 import Carousel from '../assets/components/Carousel';
 import { workoutImage } from '../utils/images';
-import firstLoginImage from '../assets/images/firstlogin.jpeg';
-import firstPlanCreatedImage from '../assets/images/firstplancreated.jpeg';
-import weekendWorkoutImage from '../assets/images/weekendworkout.jpeg';
+import firstLoginImage from '../assets/images/firstlogin.avif';
+import firstPlanCreatedImage from '../assets/images/firstplancreated.avif';
+import weekendWorkoutImage from '../assets/images/weekendworkout.avif';
 
 const otherCultists = [
   { image: firstLoginImage, heading: 'Mike', subheading: 'First Incantation of Fitness' },

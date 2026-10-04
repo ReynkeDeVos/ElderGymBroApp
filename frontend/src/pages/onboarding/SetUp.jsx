@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router';
 import Button from '@mui/material/Button';
 import { toast } from 'react-toastify';
-import setUp from '../../assets/images/startYourJourney.jpeg';
+import setUp from '../../assets/images/startYourJourney.avif';
 import { useAuth } from '../../context/AuthProvider';
 import { BackLink, OnboardingSteps } from '../../assets/components/Navigation';
 

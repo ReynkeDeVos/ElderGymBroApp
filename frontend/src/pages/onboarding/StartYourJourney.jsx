@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import Button from '@mui/material/Button';
-import startJourney from '../../assets/images/startjourney.jpeg';
+import startJourney from '../../assets/images/startjourney.avif';
 import { BackLink, OnboardingSteps } from '../../assets/components/Navigation';
 
 function StartYourJourney() {

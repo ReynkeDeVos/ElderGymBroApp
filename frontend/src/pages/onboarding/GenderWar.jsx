@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import { api } from '../../utils/api';
 import { Box, Modal } from '@mui/material';
-import maleImage from '../../assets/images/gender/male.jpeg';
-import femaleImage from '../../assets/images/gender/female.jpg';
-import eldritchHorrorImage from '../../assets/images/gender/horror.jpeg';
-import blobImage from '../../assets/images/gender/blob.jpg';
-import otherImage from '../../assets/images/gender/other.jpg';
+import maleImage from '../../assets/images/gender/male.avif';
+import femaleImage from '../../assets/images/gender/female.avif';
+import eldritchHorrorImage from '../../assets/images/gender/horror.avif';
+import blobImage from '../../assets/images/gender/blob.avif';
+import otherImage from '../../assets/images/gender/other.avif';
 import { BackLink, OnboardingSteps } from '../../assets/components/Navigation';
 
 const genders = [
