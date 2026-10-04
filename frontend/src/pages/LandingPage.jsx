@@ -47,7 +47,7 @@ const LandingPage = () => {
         </h1>
       </div>
 
-      <img src={landingPageImage} alt="Landing Page Image" className="w-4/5 md:w-auto" />
+      <img src={landingPageImage} alt="Landing Page Image" className="w-4/5 md:w-auto md:max-h-[50svh]" />
       <div className="relative z-10 flex flex-col items-center">
         <motion.button
           style={{ border, boxShadow }}
