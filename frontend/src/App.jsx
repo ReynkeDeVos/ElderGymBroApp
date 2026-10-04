@@ -1,7 +1,8 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router';
 import { Slide, ToastContainer, toast } from 'react-toastify';
-import { api } from './utils/api';
+import { api, backendReady } from './utils/api';
+import { useAuth } from './context/AuthProvider';
 import LandingPage from './pages/LandingPage';
 import Profile from './pages/Profile';
 import StartYourJourney from './pages/onboarding/StartYourJourney';
@@ -31,11 +32,29 @@ function App() {
   const showUserBar = ['/home', '/workouts', '/trophys', '/progress'].includes(pathname);
   const showBottomNav = showUserBar || pathname === '/profile';
 
+  const { isLoggedIn } = useAuth();
+
+  // Tell the user while Render wakes up, but stay quiet if the backend answers right away
   useEffect(() => {
+    const timer = setTimeout(
+      () =>
+        toast.promise(backendReady, {
+          pending: '🐙 The server is waking from its slumber… this can take up to a minute',
+          success: '⚡ The server is awake, you can log in or register now',
+        }),
+      1500,
+    );
+    backendReady.then(() => clearTimeout(timer));
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Fetch the workouts once logged in; the backend marks them immutable, so repeat visits hit the browser cache
+  useEffect(() => {
+    if (!isLoggedIn) return;
     api('/hardcodedworkouts')
       .then(setWorkouts)
       .catch(() => toast.error('Could not load the workouts'));
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <>
