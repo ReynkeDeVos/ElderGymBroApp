@@ -53,7 +53,7 @@ const Trophys = () => {
   return (
     <div className="min-h-screen bg-linear-to-br from-black to-blue-950 pt-20">
       <div className="flex flex-row justify-center">
-        <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text py-2 text-center text-3xl leading-tight font-medium text-transparent sm:py-4 md:pt-8 md:text-4xl">
+        <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text py-2 text-center text-3xl leading-tight font-medium text-transparent sm:py-4 md:pt-8 md:text-4xl/10">
           Trophies
         </h2>
       </div>

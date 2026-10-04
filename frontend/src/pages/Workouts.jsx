@@ -60,7 +60,7 @@ const Workouts = ({ workouts }) => {
 
   return (
     <div className="container mx-auto mb-8 flex min-h-svh flex-col items-center bg-linear-to-br from-black to-blue-950 p-4 pt-20">
-      <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text py-2 text-center text-3xl leading-tight font-medium text-transparent sm:py-4 md:pt-8 md:text-4xl">
+      <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text py-2 text-center text-3xl leading-tight font-medium text-transparent sm:py-4 md:pt-8 md:text-4xl/10">
         Workout Plans
       </h2>
 

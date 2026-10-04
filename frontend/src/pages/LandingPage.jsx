@@ -41,13 +41,13 @@ const LandingPage = () => {
       className="relative grid min-h-svh place-content-center place-items-center overflow-hidden bg-gray-950 px-4 pt-5 text-gray-200 md:pt-10">
       <div className="mb-2 flex flex-row justify-evenly space-x-10">
         <img src={logoImage} alt="Logo" className="h-16 w-16" />
-        <h1 className="font-cthulhumbus max-w-3xl bg-linear-to-br from-white to-gray-400 bg-clip-text text-center text-2xl leading-tight font-medium text-transparent sm:text-5xl md:text-6xl">
+        <h1 className="font-cthulhumbus max-w-3xl bg-linear-to-br from-white to-gray-400 bg-clip-text text-center text-2xl leading-tight font-medium text-transparent sm:text-5xl/none md:text-6xl/none">
           Train Like an <br />
           Ancient God
         </h1>
       </div>
 
-      <img src={landingPageImage} alt="Landing Page Image" className="w-4/5 md:w-auto md:max-h-[50svh]" />
+      <img src={landingPageImage} alt="Landing Page Image" className="w-4/5 md:max-h-[50svh] md:w-auto" />
       <div className="relative z-10 flex flex-col items-center">
         <motion.button
           style={{ border, boxShadow }}

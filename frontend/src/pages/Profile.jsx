@@ -76,7 +76,7 @@ const Profile = () => {
     return (
       <div className="min-h-screen bg-linear-to-br from-black to-blue-950 pt-20 text-gray-200">
         <div className="flex flex-row justify-center">
-          <h1 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text py-2 text-center text-3xl leading-tight font-medium text-transparent sm:py-4 md:pt-8 md:text-4xl">
+          <h1 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text py-2 text-center text-3xl leading-tight font-medium text-transparent sm:py-4 md:pt-8 md:text-4xl/10">
             Edit Profile
           </h1>
         </div>
@@ -129,7 +129,7 @@ const Profile = () => {
   return (
     <div className="min-h-screen bg-linear-to-br from-black to-blue-950 pt-20 text-gray-200">
       <div className="flex flex-row justify-center">
-        <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text py-2 text-center text-3xl leading-tight font-medium text-transparent sm:py-4 md:pt-8 md:text-4xl">
+        <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text py-2 text-center text-3xl leading-tight font-medium text-transparent sm:py-4 md:pt-8 md:text-4xl/10">
           Profile
         </h2>
       </div>
@@ -171,10 +171,10 @@ const Profile = () => {
             </div>
           </div>
 
-          <h1 className="font-cthulhumbus mt-4 cursor-default bg-linear-to-br from-yellow-950 to-yellow-500 bg-clip-text pt-4 text-center text-4xl leading-tight font-medium text-transparent sm:text-2xl md:text-4xl">
+          <h1 className="font-cthulhumbus mt-4 cursor-default bg-linear-to-br from-yellow-950 to-yellow-500 bg-clip-text pt-4 text-center text-4xl leading-tight font-medium text-transparent sm:text-2xl/8 md:text-4xl/10">
             {userData.awards?.title || 'The infamous'}
           </h1>
-          <h1 className="font-cthulhumbus cursor-default bg-linear-to-br from-teal-500 to-green-800 bg-clip-text py-2 text-center text-3xl leading-tight font-medium text-transparent sm:text-4xl md:text-5xl">
+          <h1 className="font-cthulhumbus cursor-default bg-linear-to-br from-teal-500 to-green-800 bg-clip-text py-2 text-center text-3xl leading-tight font-medium text-transparent sm:text-4xl/10 md:text-5xl/none">
             {userData.fullName || 'Lord of the Gym'}
           </h1>
         </div>

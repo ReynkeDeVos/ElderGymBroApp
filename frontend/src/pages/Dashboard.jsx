@@ -58,14 +58,14 @@ const Dashboard = ({ workouts }) => {
   return (
     <div className="container mx-auto flex min-h-screen flex-col bg-linear-to-br from-black to-blue-950 p-4 pb-24 text-white">
       <div className="mt-16 flex flex-col items-center justify-center">
-        <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text pt-2 text-center text-3xl leading-tight font-medium text-transparent md:pt-8 md:text-4xl">
+        <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text pt-2 text-center text-3xl leading-tight font-medium text-transparent md:pt-8 md:text-4xl/10">
           Welcome Dear <br /> {userData.fullName}!
         </h2>
         <hr className="my-4 w-full border-gray-500 opacity-50" />
 
         <div className="font-cthulhumbus flex w-full flex-col items-center px-4 pb-2">
           <div className="mt-0 w-full max-w-screen-sm">
-            <h2 className="font-cthulhumbus bg-linear-to-br from-white to-gray-400 bg-clip-text px-4 py-2 pt-2 text-center text-3xl leading-tight font-medium text-transparent md:text-4xl">
+            <h2 className="font-cthulhumbus bg-linear-to-br from-white to-gray-400 bg-clip-text px-4 py-2 pt-2 text-center text-3xl leading-tight font-medium text-transparent md:text-4xl/10">
               Choose your workout:
             </h2>
             <div className="pb-6">
@@ -101,7 +101,7 @@ const Dashboard = ({ workouts }) => {
 
         <div className="mt-8 w-full">
           <hr className="my-4 w-full border-gray-500 opacity-50" />
-          <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text text-center text-3xl leading-tight font-medium text-transparent md:text-4xl">
+          <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text text-center text-3xl leading-tight font-medium text-transparent md:text-4xl/10">
             Other Cultists&apos; Achievements
           </h2>
         </div>
