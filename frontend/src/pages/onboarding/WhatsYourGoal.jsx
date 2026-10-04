@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
+import { toast } from 'react-toastify';
+import { api } from '../../utils/api';
 import growMuscleImage from '../../assets/images/growmuscle.jpg';
 import buildStaminaImage from '../../assets/images/buildupyourstamina.jpg';
 import maximizeStrengthImage from '../../assets/images/maximizeyourstrength.jpg';
@@ -21,10 +22,10 @@ function WhatsYourGoal() {
 
   const chooseAim = async () => {
     try {
-      await axios.patch('/profile/me/workoutAim', { workoutAim: activeCard.heading });
+      await api('/profile/me/workoutAim', { method: 'PATCH', body: { workoutAim: activeCard.heading } });
       navigate('/gender');
-    } catch (error) {
-      console.error(error);
+    } catch {
+      toast.error('Could not save your goal');
     }
   };
 

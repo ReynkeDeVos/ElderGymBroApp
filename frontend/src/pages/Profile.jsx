@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
+import { api } from '../utils/api';
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthProvider';
@@ -26,22 +26,21 @@ const Profile = () => {
     const body = new FormData();
     body.append('avatar', e.target.files[0]);
     try {
-      const { data } = await axios.patch('/profile/me/avatar', body);
+      const data = await api('/profile/me/avatar', { method: 'PATCH', body });
       setUserData((user) => ({ ...user, avatar: data.avatar }));
-    } catch (error) {
-      console.error(error);
+    } catch {
       toast.error('Failed to upload avatar');
     }
   };
 
   const logOut = async () => {
     try {
-      await axios.post('/auth/logout');
+      await api('/auth/logout', { method: 'POST' });
       setIsLoggedIn(false);
       setUserData({});
       navigate('/login');
-    } catch (error) {
-      console.error('Logout failed', error);
+    } catch {
+      toast.error('Logout failed');
     }
   };
 
@@ -59,13 +58,12 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch('/profile/me/profileupdate', form);
+      await api('/profile/me/profileupdate', { method: 'PATCH', body: form });
       await checkUser();
       setForm(null);
     } catch (error) {
-      console.error('Failed to update profile', error);
       toast.error(
-        error.response?.status === 409
+        error.status === 409
           ? 'Username already exists. Please choose a different one.'
           : 'Failed to update profile. Please try again later.',
       );

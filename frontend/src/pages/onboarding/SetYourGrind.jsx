@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
+import { toast } from 'react-toastify';
+import { api } from '../../utils/api';
 import { Box, Button, Modal, Typography } from '@mui/material';
 import setgrind from '../../assets/images/setgrind.jpeg';
 import beginner from '../../assets/images/beginner.jpeg';
@@ -28,10 +29,10 @@ function SetYourGrind() {
 
   const handleChoose = async () => {
     try {
-      await axios.patch('/profile/me/fitnessLevel', { fitnessLevel: selected.level });
+      await api('/profile/me/fitnessLevel', { method: 'PATCH', body: { fitnessLevel: selected.level } });
       navigate('/whatsyourgoal');
-    } catch (error) {
-      console.error('Error updating fitness level:', error);
+    } catch {
+      toast.error('Could not save your level');
     }
   };
 

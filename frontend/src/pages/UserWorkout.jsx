@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
 import Confetti from 'react-confetti';
 import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthProvider';
+import { api } from '../utils/api';
 import Carousel from '../assets/components/Carousel';
 import UserActiveExercise from './UserActiveExercise';
 import { exerciseImage } from '../utils/images';
@@ -35,16 +35,18 @@ const UserWorkout = ({ workouts }) => {
 
   const completeExercise = async (sets) => {
     try {
-      const { data } = await axios.post(`/me/workouttracking/addExerciseProgress/${activeWorkout.id}`, {
-        exerciseId: exercise.id,
-        exerciseName: exercise.name,
-        sets,
+      const data = await api(`/me/workouttracking/addExerciseProgress/${activeWorkout.id}`, {
+        method: 'POST',
+        body: {
+          exerciseId: exercise.id,
+          exerciseName: exercise.name,
+          sets,
+        },
       });
       setKarmaPoints(karmaPoints + data.karma);
       toast.success(`✨ ${data.karma} dark blessings received!`, { autoClose: 2000 });
       finishExercise();
-    } catch (error) {
-      console.error(error);
+    } catch {
       toast.error('Could not save this exercise');
     }
   };

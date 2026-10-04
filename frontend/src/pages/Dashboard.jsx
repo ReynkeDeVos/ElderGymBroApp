@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
+import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthProvider';
+import { api } from '../utils/api';
 import Carousel from '../assets/components/Carousel';
 import { workoutImage } from '../utils/images';
 import firstLoginImage from '../assets/images/firstlogin.jpeg';
@@ -40,18 +41,18 @@ const Dashboard = ({ workouts }) => {
     const workoutId = workouts[index].id;
     setUserData((user) => ({ ...user, activeWorkoutId: String(workoutId) }));
     try {
-      await axios.patch('/me/workouttracking/setActiveWorkout', { workoutId });
-    } catch (error) {
-      console.error(error);
+      await api('/me/workouttracking/setActiveWorkout', { method: 'PATCH', body: { workoutId } });
+    } catch {
+      toast.error('Could not save your workout choice');
     }
   };
 
   const startWorkout = async () => {
     try {
-      await axios.post('/me/workouttracking/addWorkoutProgress', { workoutId: activeWorkout.id });
+      await api('/me/workouttracking/addWorkoutProgress', { method: 'POST', body: { workoutId: activeWorkout.id } });
       navigate('/userworkout');
-    } catch (error) {
-      console.error(error);
+    } catch {
+      toast.error('Could not start the workout');
     }
   };
 

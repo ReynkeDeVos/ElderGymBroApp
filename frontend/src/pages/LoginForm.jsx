@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
-import axios from 'axios';
 import { Button, TextField } from '@mui/material';
 import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthProvider';
+import { api } from '../utils/api';
 import { AuthLayout, PasswordField } from '../assets/components/Cosmos';
 
 function LoginForm() {
@@ -35,10 +35,10 @@ function LoginForm() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/auth/login', { email, password });
+      await api('/auth/login', { method: 'POST', body: { email, password } });
       await checkUser();
     } catch (error) {
-      toast.error(error.response?.data.error ?? 'Login failed');
+      toast.error(error.message);
     }
   };
 

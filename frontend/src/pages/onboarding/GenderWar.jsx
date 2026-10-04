@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
+import { toast } from 'react-toastify';
+import { api } from '../../utils/api';
 import { Box, Modal } from '@mui/material';
 import maleImage from '../../assets/images/gender/male.jpeg';
 import femaleImage from '../../assets/images/gender/female.jpg';
@@ -47,10 +48,10 @@ const GenderWar = () => {
 
   const choose = async () => {
     try {
-      await axios.patch('/profile/me/gender', { gender: selected.value });
+      await api('/profile/me/gender', { method: 'PATCH', body: { gender: selected.value } });
       navigate('/setup');
-    } catch (error) {
-      console.error(error);
+    } catch {
+      toast.error('Could not save your choice');
     }
   };
 

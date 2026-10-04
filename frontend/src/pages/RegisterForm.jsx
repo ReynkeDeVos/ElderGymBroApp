@@ -1,6 +1,5 @@
 import { useDeferredValue, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
-import axios from 'axios';
 import { Alert, Backdrop, Button, CircularProgress, LinearProgress, TextField, Typography } from '@mui/material';
 import { toast } from 'react-toastify';
 import { ZxcvbnFactory } from '@zxcvbn-ts/core';
@@ -9,6 +8,7 @@ import * as zxcvbnEnPackage from '@zxcvbn-ts/language-en';
 import * as zxcvbnDePackage from '@zxcvbn-ts/language-de';
 import { matcherPwnedFactory } from '@zxcvbn-ts/matcher-pwned';
 import { useRedirectIfLoggedIn } from '../context/AuthProvider';
+import { api } from '../utils/api';
 import { AuthLayout, PasswordField } from '../assets/components/Cosmos';
 
 const zxcvbn = new ZxcvbnFactory(
@@ -54,12 +54,12 @@ function RegisterForm() {
 
     try {
       const { username, email, password } = formData;
-      await axios.post('/auth/register', { username, email, password });
+      await api('/auth/register', { method: 'POST', body: { username, email, password } });
       toast.success('🫱🏼‍🫲🏾 Welcome new member of the cult!');
       setRegistered(true);
       setTimeout(() => navigate('/login'), 3000);
     } catch (error) {
-      toast.error(error.response?.data.error ?? 'Registration failed');
+      toast.error(error.message);
     }
   };
 
