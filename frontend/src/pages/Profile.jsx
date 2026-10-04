@@ -14,7 +14,7 @@ const textFields = [
 ];
 
 const Profile = () => {
-  const { userData, setUserData, setIsLoggedIn, checkUser } = useAuth();
+  const { userData, setUserData, checkUser } = useAuth();
   const navigate = useNavigate();
   const [form, setForm] = useState(null); // null = not editing
 
@@ -36,8 +36,8 @@ const Profile = () => {
   const logOut = async () => {
     try {
       await api('/auth/logout', { method: 'POST' });
-      setIsLoggedIn(false);
-      setUserData({});
+      // Clearing the auth state here would make PrivateRoute redirect to /accessdenied first;
+      // the login page's checkUser resets it once the cookie is gone
       navigate('/login');
     } catch {
       toast.error('Logout failed');
@@ -125,7 +125,7 @@ const Profile = () => {
   }
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-black to-blue-950 pt-20 text-gray-200">
+    <div className="relative min-h-screen bg-linear-to-br from-black to-blue-950 pt-20 text-gray-200">
       <div className="flex flex-row justify-center">
         <h2 className="font-cthulhumbus cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text py-2 text-center text-3xl/tight font-medium text-transparent sm:py-4 md:pt-8 md:text-4xl/10">
           Profile
