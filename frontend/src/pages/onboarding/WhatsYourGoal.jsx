@@ -40,7 +40,7 @@ function WhatsYourGoal() {
       <div className="flex flex-wrap justify-center">
         <div className="grid grid-flow-row auto-rows-max grid-cols-2 gap-2 p-2">
           {cards.map((card) => (
-            <div key={card.heading} className="m-1 h-full" onClick={() => setActiveCard(card)}>
+            <div key={card.heading} className="m-1 h-full cursor-pointer" onClick={() => setActiveCard(card)}>
               <div className="h-auto transform rounded-t-lg border-4 border-solid border-teal-800 bg-linear-to-tr from-gray-900 via-pink-900 to-zinc-900 object-cover transition-transform duration-300 ease-in-out hover:scale-110">
                 <img src={card.image} alt={card.heading} className="h-80 w-56 rounded-sm object-cover object-top" />
                 <div className="flex h-auto grow flex-col items-center border-2 border-solid border-pink-800 p-2 text-white">

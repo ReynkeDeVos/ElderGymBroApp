@@ -72,7 +72,10 @@ const Trophys = () => {
 
       <div className="mt-8 mb-16 grid grid-cols-2 gap-x-4 gap-y-4">
         {achievements.map((achievement) => (
-          <div key={achievement.id} className="flex flex-col items-center" onClick={() => setSelected(achievement)}>
+          <div
+            key={achievement.id}
+            className="flex cursor-pointer flex-col items-center"
+            onClick={() => setSelected(achievement)}>
             <img
               src={achievement.imageUrl}
               alt={achievement.name}
