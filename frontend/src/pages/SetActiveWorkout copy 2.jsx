@@ -1,6 +1,6 @@
 import { useAuth } from '../context/AuthProvider';
 import { useEffect, useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import axios from 'axios';
 import Slider from 'react-slick';
 import UserActiveExercise from './UserActiveExercise';
@@ -8,8 +8,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './carousel.css';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import 'daisyui/dist/full.css';
 import useFetchData from '../utils/FetchData';
 
 const workoutImages = import.meta.glob('../assets/images/workouts/*.jpg', { eager: true });
@@ -113,8 +111,8 @@ const SetActiveWorkout = () => {
   console.log(hardcodedWorkouts);
 
   return (
-    <div className="flex min-h-screen flex-col items-center bg-gradient-to-br from-black to-blue-950 pt-0 font-cthulhumbus">
-      <div className="mt-6 w-full max-w-screen-sm">
+    <div className="flex min-h-screen flex-col items-center bg-linear-to-br from-black to-blue-950 pt-0 font-cthulhumbus">
+      <div className="mt-6 w-full max-w-(--breakpoint-sm)">
         <h2 className="px-4 py-2 text-center font-cthulhumbus text-xl text-white">Choose your workout:</h2>
         {isLoading ? (
           <div>Loading...</div>
@@ -133,7 +131,7 @@ const SetActiveWorkout = () => {
                     className="rounded-t-lg shadow-lg"
                   />
 
-                  <button className="mb-2 h-auto w-4/5 rounded-md border-2 border-pink-800 bg-gradient-to-tr from-gray-900 via-pink-900 to-zinc-900 p-2 text-center font-cthulhumbus text-xl">
+                  <button className="mb-2 h-auto w-4/5 rounded-md border-2 border-pink-800 bg-linear-to-tr from-gray-900 via-pink-900 to-zinc-900 p-2 text-center font-cthulhumbus text-xl">
                     Activate Workout
                   </button>
                 </div>

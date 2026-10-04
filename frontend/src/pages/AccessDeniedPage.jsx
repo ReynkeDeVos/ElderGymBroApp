@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { Canvas } from '@react-three/fiber';
 import { Stars } from '@react-three/drei';
 import { Button } from '@mui/material';

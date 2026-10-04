@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router';
 import { AiOutlineHome } from 'react-icons/ai';
 import { PiBarbell } from 'react-icons/pi';
 import { BsBarChart } from 'react-icons/bs';

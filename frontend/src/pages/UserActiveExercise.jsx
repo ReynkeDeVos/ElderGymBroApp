@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import skippingImage from '../assets/images/skipping.png';
 
 const UserActiveExercise = ({
@@ -125,13 +124,13 @@ const UserActiveExercise = ({
         <div className="flex justify-center space-x-4">
           <button
             type="button"
-            className="rounded-md border-2 border-yellow-800 bg-gradient-to-tr from-gray-900 via-yellow-600 to-zinc-900 px-4 py-2 text-white"
+            className="rounded-md border-2 border-yellow-800 bg-linear-to-tr from-gray-900 via-yellow-600 to-zinc-900 px-4 py-2 text-white"
             onClick={() => setShowSkipModal(true)}>
             Skip
           </button>
           <button
             type="submit"
-            className="rounded-md border-2 border-pink-800 bg-gradient-to-tr from-gray-900 via-pink-600 to-zinc-900 px-4 py-2 text-white"
+            className="rounded-md border-2 border-pink-800 bg-linear-to-tr from-gray-900 via-pink-600 to-zinc-900 px-4 py-2 text-white"
             disabled={isCompleted}>
             Complete Exercise
           </button>

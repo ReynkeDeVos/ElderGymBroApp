@@ -61,16 +61,16 @@ const ActiveWorkout = () => {
 
   return (
     // Background Container
-    <div className="container mx-auto mb-8 flex min-h-svh flex-col items-center bg-gradient-to-br from-black to-blue-950 p-4">
+    <div className="container mx-auto mb-8 flex min-h-svh flex-col items-center bg-linear-to-br from-black to-blue-950 p-4">
       {/* --- */}
 
       <div className="mb-2 mt-2">
         <div className="w-90 card m-4 cursor-pointer rounded-lg border-4 border-solid border-teal-800 bg-zinc-800 p-2 shadow-md lg:card-side">
           <div>
-            <button onClick={togglePlan} className="w-full text-left focus:outline-none">
+            <button onClick={togglePlan} className="w-full text-left focus:outline-hidden">
               {/* Conditional rendering for the workout image */}
               {expandedPlan && (
-                <div className="card max-w-screen-sm rounded-t-lg">
+                <div className="card max-w-(--breakpoint-sm) rounded-t-lg">
                   <img
                     src={`../src/assets/images/workouts/${activeWorkout.name}.jpg`}
                     alt={activeWorkout.name}
@@ -80,7 +80,7 @@ const ActiveWorkout = () => {
               )}
               <br />
               {/* Container Workout Titel */}
-              <h5 className="mb-2 rounded-t-sm border-2 border-solid border-pink-800 bg-gradient-to-tr from-gray-900 via-pink-900 to-zinc-900 p-2 pb-1 pt-1 text-center font-cthulhumbus text-3xl font-extrabold text-teal-500 shadow-2xl">
+              <h5 className="mb-2 rounded-t-sm border-2 border-solid border-pink-800 bg-linear-to-tr from-gray-900 via-pink-900 to-zinc-900 p-2 pb-1 pt-1 text-center font-cthulhumbus text-3xl font-extrabold text-teal-500 shadow-2xl">
                 {activeWorkout.name}
               </h5>
             </button>
@@ -115,8 +115,8 @@ const ActiveWorkout = () => {
                   <br />
                   {/* Toggle Tips section/Tips Button*/}
                   <div className="flex justify-center">
-                    <button onClick={() => toggleTips(workoutId, tipIndex)} className="w-full focus:outline-none">
-                      <div className="mt-2 flex cursor-pointer flex-row justify-center rounded-md border-2 border-pink-800 bg-gradient-to-tr from-gray-900 via-pink-900 to-zinc-900 text-center">
+                    <button onClick={() => toggleTips(workoutId, tipIndex)} className="w-full focus:outline-hidden">
+                      <div className="mt-2 flex cursor-pointer flex-row justify-center rounded-md border-2 border-pink-800 bg-linear-to-tr from-gray-900 via-pink-900 to-zinc-900 text-center">
                         <svg
                           className="size-8 text-teal-500"
                           xmlns="http://www.w3.org/2000/svg"
@@ -163,7 +163,7 @@ const ActiveWorkout = () => {
                             alt={exercise.name}
                             className="rounded-md"
                           />
-                          {/* <div className="cursor-pointer rounded-md border-pink-800 bg-gradient-to-tr from-gray-900 via-pink-900 to-zinc-900 text-center"
+                          {/* <div className="cursor-pointer rounded-md border-pink-800 bg-linear-to-tr from-gray-900 via-pink-900 to-zinc-900 text-center"
                                 onClick={() => toggleExercise(exIndex)}>
                                   
                                 <h6 className="mt-2 rounded-md border-2 border-pink-800 text-lg font-bold text-teal-500">
@@ -173,7 +173,7 @@ const ActiveWorkout = () => {
                               </div> */}
 
                           <div
-                            className="mt-2 flex cursor-pointer flex-row justify-center rounded-md border-2 border-pink-800 bg-gradient-to-tr from-gray-900 via-pink-900 to-zinc-900 text-center"
+                            className="mt-2 flex cursor-pointer flex-row justify-center rounded-md border-2 border-pink-800 bg-linear-to-tr from-gray-900 via-pink-900 to-zinc-900 text-center"
                             onClick={() => toggleExercise(workoutId, exerciseIndex)}>
                             <svg
                               className="size-8 text-teal-500"

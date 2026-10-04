@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import cuteCthulhu from '../assets/images/cuteCthulhu.png';
 import firstWorkoutDone from '../assets/images/firstworkoutdone.png';
 import trainingNight from '../assets/images/trainingnight.jpeg';
@@ -98,11 +97,11 @@ const Trophys = ({ progress, updateProgress, toggleAchievement, unlockedAchievme
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black to-blue-950 pt-20">
+    <div className="min-h-screen bg-linear-to-br from-black to-blue-950 pt-20">
       {/* window bar */}
 
       <div className="flex flex-row justify-center from-black to-blue-950">
-      <h2 className="py-2 sm:py-4 md:pt-8 cursor-default bg-gradient-to-br from-white to-gray-400 bg-clip-text text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent md:text-4xl">
+      <h2 className="py-2 sm:py-4 md:pt-8 cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent md:text-4xl">
           Trophies{' '}
         </h2>
       </div>

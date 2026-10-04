@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useAuth } from '../context/AuthProvider';
@@ -115,11 +115,11 @@ const Profile = () => {
   }, [userData]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black to-blue-950 pt-20 text-gray-200">
+    <div className="min-h-screen bg-linear-to-br from-black to-blue-950 pt-20 text-gray-200">
       {!editMode ? (
         <>
           <div className="flex flex-row justify-center">
-            <h2 className="cursor-default bg-gradient-to-br from-white to-gray-400 bg-clip-text py-2 text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent sm:py-4 md:pt-8 md:text-4xl">
+            <h2 className="cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text py-2 text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent sm:py-4 md:pt-8 md:text-4xl">
               Profile
             </h2>
           </div>
@@ -157,10 +157,10 @@ const Profile = () => {
 
               <div className="flex cursor-pointer flex-row justify-center">
                 <div className="flex flex-col">
-                  <h1 className="mt-4 cursor-default bg-gradient-to-br from-yellow-950 to-yellow-500 bg-clip-text pt-4 text-center font-cthulhumbus text-4xl font-medium leading-tight text-transparent sm:text-2xl md:text-4xl">
+                  <h1 className="mt-4 cursor-default bg-linear-to-br from-yellow-950 to-yellow-500 bg-clip-text pt-4 text-center font-cthulhumbus text-4xl font-medium leading-tight text-transparent sm:text-2xl md:text-4xl">
                     {userData.awards.title || 'The infamous'}
                   </h1>
-                  <h1 className="cursor-default bg-gradient-to-br from-teal-500 to-green-800 bg-clip-text py-2 text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent sm:text-4xl md:text-5xl">
+                  <h1 className="cursor-default bg-linear-to-br from-teal-500 to-green-800 bg-clip-text py-2 text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent sm:text-4xl md:text-5xl">
                     {userData.fullName || 'Lord of the Gym'}
                   </h1>
                 </div>
@@ -183,9 +183,9 @@ const Profile = () => {
           </div>
         </>
       ) : (
-        <div className="min-h-svh bg-gradient-to-br from-black to-blue-950 text-gray-200">
+        <div className="min-h-svh bg-linear-to-br from-black to-blue-950 text-gray-200">
           <div className="flex flex-row justify-center">
-            <h1 className="cursor-default bg-gradient-to-br from-white to-gray-400 bg-clip-text py-2 text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent sm:py-4 md:pt-8 md:text-4xl">
+            <h1 className="cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text py-2 text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent sm:py-4 md:pt-8 md:text-4xl">
               Edit Profile
             </h1>
           </div>

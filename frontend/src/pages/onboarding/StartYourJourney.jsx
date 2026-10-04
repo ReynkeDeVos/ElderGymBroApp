@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 // images
 import startJourney from '../../assets/images/startjourney.jpeg';
@@ -9,7 +9,7 @@ import startJourney from '../../assets/images/startjourney.jpeg';
 function StartYourJourney() {
   return (
     <>
-      <div className="relative min-h-svh bg-gradient-to-br from-black to-blue-950 text-gray-200">
+      <div className="relative min-h-svh bg-linear-to-br from-black to-blue-950 text-gray-200">
         {/* window bar */}
         <div className="flex flex-row justify-start from-black to-blue-950">
           {/* icon button container*/}
@@ -34,7 +34,7 @@ function StartYourJourney() {
 
         {/* --1. Page title goes here --*/}
         <div className="flex flex-row justify-center">
-          <h1 className="bg-gradient-to-br from-white to-gray-400 bg-clip-text p-2 text-center font-cthulhumbus text-2xl font-medium leading-tight text-transparent sm:text-3xl md:text-4xl">
+          <h1 className="bg-linear-to-br from-white to-gray-400 bg-clip-text p-2 text-center font-cthulhumbus text-2xl font-medium leading-tight text-transparent sm:text-3xl md:text-4xl">
             Start Your Journey
           </h1>
         </div>

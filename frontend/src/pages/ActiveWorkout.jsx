@@ -36,10 +36,10 @@ const ActiveWorkout = ({ workouts }) => {
         <div key={plan.id} className="mb-4 mt-2">
           <div className="w-90 card glass m-2 mb-4 cursor-pointer rounded-lg border-4 border-solid border-[#4b0082] bg-gray-800 bg-opacity-40 p-4 pt-4 shadow-md transition-transform lg:card-side">
             <div>
-              <button onClick={() => togglePlans(index)} className="w-full text-left focus:outline-none">
+              <button onClick={() => togglePlans(index)} className="w-full text-left focus:outline-hidden">
                 {/* Conditional rendering for the workout image */}
                 {expandedPlans !== index && (
-                  <div className="card glass max-w-screen-sm rounded-sm border-solid border-[#4b0082]">
+                  <div className="card glass max-w-(--breakpoint-sm) rounded-xs border-solid border-[#4b0082]">
                     <img
                       src={`../src/assets/images/workouts/${plan.name}.jpg`}
                       alt={plan.name}
@@ -81,7 +81,7 @@ const ActiveWorkout = ({ workouts }) => {
                       ''
                     )}
                     {/* Toggle Tips section */}
-                    <button onClick={() => toggleTips(index)} className="w-full text-left focus:outline-none">
+                    <button onClick={() => toggleTips(index)} className="w-full text-left focus:outline-hidden">
                       <h6 className="text-md cursor-pointer font-extrabold text-[#2b777d]">Tips</h6>
                     </button>
                   </div>
@@ -104,7 +104,7 @@ const ActiveWorkout = ({ workouts }) => {
                         plan.exercises.map((exercise, exIndex) => (
                           <div key={exercise.id} className="mb-2 mt-2 rounded-lg border bg-white p-4 shadow-md">
                             {expandedExercise !== exIndex && (
-                              <div className="card glass max-w-screen-sm rounded-md border-solid border-white">
+                              <div className="card glass max-w-(--breakpoint-sm) rounded-md border-solid border-white">
                                 <img
                                   src={`../src/assets/images/Exercises/${exercise.name.replace(/ /g, '_')}/images/0.jpg`}
                                   alt={exercise.name}
@@ -158,7 +158,7 @@ const ActiveWorkout = ({ workouts }) => {
                           <div key={splitIndex} className="mb-2 mt-2 rounded-lg border bg-white p-4 shadow-md">
                             <div
                               onClick={() => toggleSplitDays(index)}
-                              className="w-full cursor-pointer text-left focus:outline-none">
+                              className="w-full cursor-pointer text-left focus:outline-hidden">
                               <h6 className="text-2xl font-semibold capitalize text-[#2b777d]">Day {split.day}</h6>
                             </div>
                             {/* Collapsible content for split days */}
@@ -180,7 +180,7 @@ const ActiveWorkout = ({ workouts }) => {
                                         <div className="mb-3 mt-3">
                                           <div key={exerciseIndex} className="text-gray-600">
                                             {expandedExercise !== exerciseIndex && (
-                                              <div className="card glass max-w-screen-sm rounded-md border-solid border-white">
+                                              <div className="card glass max-w-(--breakpoint-sm) rounded-md border-solid border-white">
                                                 <img
                                                   src={`../src/assets/images/Exercises/${exercise.name.replace(/ /g, '_')}/images/0.jpg`}
                                                   alt={exercise.name}

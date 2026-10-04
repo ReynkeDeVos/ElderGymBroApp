@@ -13,10 +13,10 @@ const UserBar = () => {
         </div>
         {isLoggedIn && userData ? (
           <div className="flex flex-col items-center justify-center">
-            <div className="mt-1 cursor-default bg-gradient-to-br  from-teal-500 to-green-800 bg-clip-text text-center font-cthulhumbus font-medium leading-tight text-transparent text-xl sm:text-2xl md:text-3xl">
+            <div className="mt-1 cursor-default bg-linear-to-br  from-teal-500 to-green-800 bg-clip-text text-center font-cthulhumbus font-medium leading-tight text-transparent text-xl sm:text-2xl md:text-3xl">
               {userData.username || 'No username'}
             </div>
-            <div className="cursor-default text-nowrap bg-gradient-to-br  from-yellow-950 to-yellow-500 bg-clip-text text-center font-cthulhumbus font-medium leading-tight text-transparent text-xl sm:text-2xl md:text-3xl">
+            <div className="cursor-default text-nowrap bg-linear-to-br  from-yellow-950 to-yellow-500 bg-clip-text text-center font-cthulhumbus font-medium leading-tight text-transparent text-xl sm:text-2xl md:text-3xl">
               {userData.awards?.title || 'No title'}
             </div>
           </div>

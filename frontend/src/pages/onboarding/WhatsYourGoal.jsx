@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router';
 import axios from 'axios';
 
 // Importing images
@@ -73,7 +73,7 @@ function WhatsYourGoal() {
 
   return (
     <>
-      <div className="min-h-svh bg-gradient-to-br from-black to-blue-950 text-gray-200">
+      <div className="min-h-svh bg-linear-to-br from-black to-blue-950 text-gray-200">
         {/* window bar */}
         <div className="flex flex-row justify-start from-black to-blue-950">
           {/* icon button container*/}
@@ -98,7 +98,7 @@ function WhatsYourGoal() {
 
         {/* Page title bar */}
         <div className="flex flex-row justify-center">
-          <h1 className="bg-gradient-to-br from-white to-gray-400 bg-clip-text p-2 text-center font-cthulhumbus text-2xl font-medium leading-tight text-transparent sm:text-3xl md:text-4xl">
+          <h1 className="bg-linear-to-br from-white to-gray-400 bg-clip-text p-2 text-center font-cthulhumbus text-2xl font-medium leading-tight text-transparent sm:text-3xl md:text-4xl">
             What&apos;s your goal
           </h1>
         </div>
@@ -110,9 +110,9 @@ function WhatsYourGoal() {
             {cards.map((card, index) => (
               <div key={index} className="m-1 h-full" onClick={() => openCard(card)}>
                 {/* Card content */}
-                <div className="h-auto transform rounded-t-lg border-4 border-solid border-teal-800 bg-gradient-to-tr from-gray-900 via-pink-900 to-zinc-900 object-cover transition-transform duration-300 ease-in-out hover:scale-110">
-                  <img src={card.image} alt={card.heading} className="h-80 w-56 rounded object-cover object-[top]" />
-                  <div className="flex h-auto flex-grow flex-col items-center border-2 border-solid border-pink-800 p-2 text-white">
+                <div className="h-auto transform rounded-t-lg border-4 border-solid border-teal-800 bg-linear-to-tr from-gray-900 via-pink-900 to-zinc-900 object-cover transition-transform duration-300 ease-in-out hover:scale-110">
+                  <img src={card.image} alt={card.heading} className="h-80 w-56 rounded-sm object-cover object-top" />
+                  <div className="flex h-auto grow flex-col items-center border-2 border-solid border-pink-800 p-2 text-white">
                     <p className="text-center font-cthulhumbus text-xl text-teal-500">{card.subheading}</p>
                   </div>
                 </div>
@@ -127,12 +127,12 @@ function WhatsYourGoal() {
             className="fixed inset-0 z-50 flex items-center justify-center overflow-auto bg-black bg-opacity-40"
             onClick={closeModal}>
             <div
-              className="flex max-w-xs flex-col rounded-lg bg-gradient-to-tr from-gray-900 via-pink-900 to-zinc-900 object-cover p-4 text-gray-800 shadow-lg"
+              className="flex max-w-xs flex-col rounded-lg bg-linear-to-tr from-gray-900 via-pink-900 to-zinc-900 object-cover p-4 text-gray-800 shadow-lg"
               onClick={(e) => e.stopPropagation()}>
               <img
                 src={activeCard.image}
                 alt={activeCard.heading}
-                className="h-96 w-auto rounded-lg object-cover object-[top]"
+                className="h-96 w-auto rounded-lg object-cover object-top"
               />
 
               <div className="mt-4">
@@ -142,12 +142,12 @@ function WhatsYourGoal() {
                 </p>
               </div>
               <div className="mt-4 flex justify-between">
-                <button onClick={closeModal} className="rounded bg-gray-800 px-4 py-2 text-white hover:bg-gray-700">
+                <button onClick={closeModal} className="rounded-sm bg-gray-800 px-4 py-2 text-white hover:bg-gray-700">
                   Close
                 </button>
                 <button
                   onClick={updateAimAndNavigate}
-                  className="rounded bg-teal-500 px-4 py-2 text-white hover:bg-teal-600">
+                  className="rounded-sm bg-teal-500 px-4 py-2 text-white hover:bg-teal-600">
                   Choose this
                 </button>
               </div>

@@ -1,6 +1,6 @@
 import express from 'express';
-import exercises from './data/exercises.json' assert { type: 'json' };
-import hardcodedworkouts from './data/hardcodedWorkouts.json' assert { type: 'json' };
+import exercises from './data/exercises.json' with { type: 'json' };
+import hardcodedworkouts from './data/hardcodedWorkouts.json' with { type: 'json' };
 import './db/server.js';
 import { errorHandler } from './middleware/ErrorHandler.js';
 import authRouter from './routes/authRouter.js';

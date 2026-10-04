@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import UICardLarge from '../assets/components/UICardLarge';
 import { useAuth } from '../context/AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import axios from 'axios';
-import Slider from 'react-slick';
+import SlickSlider from 'react-slick';
+// react-slick is CommonJS; Vite 8 hands us module.exports
+const Slider = SlickSlider.default ?? SlickSlider;
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './carousel2.css';
@@ -157,43 +159,21 @@ const Dashboard = ({ workouts }) => {
     dots: true,
     infinite: false, // Make the slider non-infinite
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: '30%', // Decrease padding to make images smaller
     arrows: false, // Hide the default arrows
     accessibility: true, // Enable keyboard navigation
     focusOnSelect: true, // Focus on select to enable keyboard interaction
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          infinite: false,
-          dots: true,
-          centerMode: true,
-          centerPadding: '30%', // Decrease padding to make images smaller
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: '30%', // Decrease padding to make images smaller
-        },
-      },
-    ],
   };
 
   return (
-    <div className="container mx-auto flex min-h-screen flex-col bg-gradient-to-br from-black to-blue-950 p-4 pb-24 text-white">
+    <div className="container mx-auto flex min-h-screen flex-col bg-linear-to-br from-black to-blue-950 p-4 pb-24 text-white">
       <div className="mt-16 flex flex-col items-center justify-center">
         <div className="flex cursor-pointer flex-col items-center justify-center">
           <div className="flex flex-col items-center">
-          <h2 className="pt-2 sm: md:pt-8 cursor-default bg-gradient-to-br from-white to-gray-400 bg-clip-text text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent md:text-4xl">
+          <h2 className="pt-2 sm: md:pt-8 cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent md:text-4xl">
               Welcome Dear <br /> {userData.fullName}!
             </h2>
           </div>
@@ -201,7 +181,7 @@ const Dashboard = ({ workouts }) => {
 
         {/* <div className="mt-2 w-full">
           <hr className="my-4 w-full border-gray-500 opacity-50" />
-          <h2 className="cursor-default bg-gradient-to-br from-white to-gray-400 bg-clip-text pt-2 text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent md:text-4xl">
+          <h2 className="cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text pt-2 text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent md:text-4xl">
             Active Workout
           </h2>
         </div> */}
@@ -215,12 +195,12 @@ const Dashboard = ({ workouts }) => {
         <div className="mt-0 flex items-center justify-center">
           {!workoutCompleted ? (
             <button
-              className="rounded-md border-2 border-pink-800 bg-gradient-to-tr from-gray-900 via-pink-900 to-zinc-900 p-3 text-center"
+              className="rounded-md border-2 border-pink-800 bg-linear-to-tr from-gray-900 via-pink-900 to-zinc-900 p-3 text-center"
               onClick={() => activateWorkout(activeWorkout)}>
               Start Workout
             </button>
           ) : (
-            <div className="mb-2 w-4/5 rounded-md border-2 border-pink-800 bg-gradient-to-tr from-gray-900 via-pink-900 to-zinc-900 p-4 text-center font-cthulhumbus text-2xl">
+            <div className="mb-2 w-4/5 rounded-md border-2 border-pink-800 bg-linear-to-tr from-gray-900 via-pink-900 to-zinc-900 p-4 text-center font-cthulhumbus text-2xl">
               <span className="text-xl">Your workout for the day is complete!</span> <br />
               <span>Cthulhu is pleased!</span>
             </div>
@@ -229,7 +209,7 @@ const Dashboard = ({ workouts }) => {
 
         <div className="mt-8 w-full">
           <hr className="my-4 w-full border-gray-500 opacity-50" />
-          <h2 className="cursor-default bg-gradient-to-br from-white to-gray-400 bg-clip-text text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent md:text-4xl">
+          <h2 className="cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent md:text-4xl">
             Other Cultists&apos; Achievements
           </h2>
         </div>

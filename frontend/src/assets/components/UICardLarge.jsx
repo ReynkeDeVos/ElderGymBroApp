@@ -6,7 +6,7 @@ function UICardLarge({ image, heading, subheading }) {
           {/* Icon / image */}
           <div className="flex w-auto flex-col items-center justify-center">
             {/* Heading */}
-            <h2 className="mt-0 cursor-default text-nowrap bg-gradient-to-br from-teal-500 to-green-800 bg-clip-text py-1 font-cthulhumbus text-sm font-medium leading-tight text-transparent sm:text-2xl md:text-lg">
+            <h2 className="mt-0 cursor-default text-nowrap bg-linear-to-br from-teal-500 to-green-800 bg-clip-text py-1 font-cthulhumbus text-sm font-medium leading-tight text-transparent sm:text-2xl md:text-lg">
               {heading}
             </h2>
             <img src={image} alt="" className="mx-auto w-48 rounded-xl p-2" />

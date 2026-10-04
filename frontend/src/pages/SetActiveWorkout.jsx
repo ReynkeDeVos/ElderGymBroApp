@@ -1,12 +1,12 @@
 import { useAuth } from '../context/AuthProvider';
 import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import Slider from 'react-slick';
+import SlickSlider from 'react-slick';
+// react-slick is CommonJS; Vite 8 hands us module.exports
+const Slider = SlickSlider.default ?? SlickSlider;
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './carousel2.css';
-import 'react-toastify/dist/ReactToastify.css';
-import 'daisyui/dist/full.css';
 import useFetchData from '../utils/FetchData';
 
 const workoutImages = import.meta.glob('../assets/images/workouts/*.jpg', { eager: true });
@@ -83,7 +83,7 @@ const SetActiveWorkout = () => {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: '20%',
@@ -92,32 +92,12 @@ const SetActiveWorkout = () => {
     focusOnSelect: true,
     afterChange: handleAfterChange,
     initialSlide: selectedIndex, // Set initialSlide to selectedIndex
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: '20%',
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: '20%',
-        },
-      },
-    ],
   };
 
   return (
     <div className="flex flex-col items-center pb-2 font-cthulhumbus">
-      <div className="mt-0 w-full max-w-screen-sm">
-        <h2 className="bg-gradient-to-br from-white to-gray-400 bg-clip-text px-4 py-2 pt-2 text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent md:text-4xl">
+      <div className="mt-0 w-full max-w-(--breakpoint-sm)">
+        <h2 className="bg-linear-to-br from-white to-gray-400 bg-clip-text px-4 py-2 pt-2 text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent md:text-4xl">
           Choose your workout:
         </h2>
 

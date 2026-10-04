@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Box, TextField, Button } from '@mui/material';
 import cthulupassword from '../assets/images/cthulupassword.png';
 import { useAuth } from '../context/AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 function ForgotPassword() {
   const { isLoggedIn, checkUser } = useAuth();

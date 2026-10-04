@@ -1,8 +1,10 @@
 import { useAuth } from '../context/AuthProvider';
 import { useEffect, useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import axios from 'axios';
-import Slider from 'react-slick';
+import SlickSlider from 'react-slick';
+// react-slick is CommonJS; Vite 8 hands us module.exports
+const Slider = SlickSlider.default ?? SlickSlider;
 import UserActiveExercise from './UserActiveExercise';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -10,8 +12,6 @@ import './carousel.css';
 import Confetti from 'react-confetti';
 import doneImage from '../assets/images/finished.png';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import 'daisyui/dist/full.css';
 
 // Pre-import all images
 import barbellBenchPressMediumGripImage from '../assets/images/Exercises/Barbell_Bench_Press_-_Medium_Grip/images/0.jpg';
@@ -181,7 +181,7 @@ const UserWorkout = () => {
     dots: true,
     infinite: false, // Make the slider non-infinite
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: '20%', // Increase padding to show parts of adjacent images
@@ -189,28 +189,6 @@ const UserWorkout = () => {
     accessibility: true, // Enable keyboard navigation
     focusOnSelect: true, // Focus on select to enable keyboard interaction
     afterChange: handleAfterChange, // Add afterChange handler
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          infinite: false,
-          dots: true,
-          centerMode: true,
-          centerPadding: '20%', // Increase padding to show parts of adjacent images
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: '20%', // Increase padding to show parts of adjacent images
-        },
-      },
-    ],
   };
 
   const importImage = (exerciseName) => {
@@ -218,7 +196,7 @@ const UserWorkout = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center bg-gradient-to-br from-black to-blue-950 pt-0 font-cthulhumbus">
+    <div className="flex min-h-screen flex-col items-center bg-linear-to-br from-black to-blue-950 pt-0 font-cthulhumbus">
       <div className="fixed left-0 right-0 top-0 z-50 bg-black p-0 text-center text-white shadow-md">
         <div className="flex items-center justify-center">
           <span className="mr-2">Karma</span>
@@ -226,7 +204,7 @@ const UserWorkout = () => {
           <span className="ml-2">+ {karmaPoints} pts</span>
         </div>
       </div>
-      <div className="mt-6 w-full max-w-screen-sm">
+      <div className="mt-6 w-full max-w-(--breakpoint-sm)">
         {' '}
         {/* Adjust margin to make space for the progress bar */}
         <h2 className="px-4 py-2 text-center font-cthulhumbus text-xl text-white">Exercise List</h2>

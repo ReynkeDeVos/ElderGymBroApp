@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router';
 import LandingPage from './pages/LandingPage';
 import Profile from './pages/Profile';
 import Template from './pages/Template';
@@ -15,7 +15,6 @@ import Trophys from './pages/Trophys';
 import UIElements from './assets/components/UIElements';
 import ForgotPassword from './pages/ForgotPassword';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import RegisterForm from './pages/RegisterForm';
 import BottomNav from './assets/components/BottomNav';
 import LoginForm from './pages/LoginForm';

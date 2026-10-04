@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router';
 import axios from 'axios';
-import { Container, TextField, Button, Grid, InputAdornment, IconButton } from '@mui/material';
+import { Container, TextField, Button, InputAdornment, IconButton } from '@mui/material';
 import { toast } from 'react-toastify';
 import { Stars } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
@@ -136,23 +136,23 @@ function LoginForm() {
               mt: 3,
             },
           }}>
-          <h2 className="my-8 max-w-3xl bg-gradient-to-br from-white to-gray-400 bg-clip-text text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent sm:text-5xl md:text-6xl">
+          <h2 className="my-8 max-w-3xl bg-linear-to-br from-white to-gray-400 bg-clip-text text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent sm:text-5xl md:text-6xl">
             Login
           </h2>
           <form onSubmit={handleLogin}>
-            <Grid container spacing={0}>
-              <Grid item xs={12}>
+            <div>
+              <div>
                 <TextField
                   type="text"
                   label="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full rounded border p-2"
+                  className="w-full rounded-sm border p-2"
                 />
-              </Grid>
+              </div>
 
-              <Grid item xs={12}>
+              <div>
                 <TextField
                   fullWidth
                   required
@@ -163,7 +163,7 @@ function LoginForm() {
                   variant="outlined"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  InputProps={{
+                  slotProps={{ input: {
                     endAdornment: (
                       <InputAdornment position="end">
                         <IconButton
@@ -174,10 +174,10 @@ function LoginForm() {
                         </IconButton>
                       </InputAdornment>
                     ),
-                  }}
+                  } }}
                 />
-              </Grid>
-              <Grid item xs={12}>
+              </div>
+              <div>
                 <Button
                   type="submit"
                   variant="contained"
@@ -196,8 +196,8 @@ function LoginForm() {
                     Forgot Password?
                   </Link>
                 </div>
-              </Grid>
-            </Grid>
+              </div>
+            </div>
           </form>
         </Container>
       </motion.section>

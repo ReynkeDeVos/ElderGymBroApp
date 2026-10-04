@@ -2,6 +2,7 @@ import User from '../models/userSchema.js';
 import asyncHandler from '../utils/asyncHandler.js';
 import { getDefaultAvatar } from '../utils/profileUtils.js';
 import ErrorResponse from '../utils/ErrorResponse.js';
+import { uploadAvatar } from '../services/Upload.js';
 
 // Verify User
 export const getUser = asyncHandler(async (req, res, next) => {
@@ -61,8 +62,9 @@ export const updateWorkoutAim = asyncHandler(async (req, res, next) => {
 
 // Update Avatar
 export const updateAvatar = asyncHandler(async (req, res, next) => {
+  if (!req.file) throw new ErrorResponse('No avatar file uploaded', 400);
   const user = await User.findById(req.uid);
-  user.avatar = req.file.path;
+  user.avatar = await uploadAvatar(req.file);
   await user.save();
   res.status(200).json({ avatar: user.avatar, message: 'Successfully changed avatar link' });
 });

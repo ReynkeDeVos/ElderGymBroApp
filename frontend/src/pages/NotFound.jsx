@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import NotFoundImage from '../assets/images/404.avif';
 import Shoggoth from '../assets/images/workouts/shoggoth.webp';
 
@@ -24,7 +24,7 @@ function NotFound() {
 
         {/* -- 1. Page title goes here --*/}
         <div className="flex flex-row justify-center">
-          <h1 className="bg-gradient-to-br from-white to-gray-400 bg-clip-text p-2 text-center font-cthulhumbus text-4xl font-medium leading-tight text-transparent sm:text-3xl md:text-4xl">
+          <h1 className="bg-linear-to-br from-white to-gray-400 bg-clip-text p-2 text-center font-cthulhumbus text-4xl font-medium leading-tight text-transparent sm:text-3xl md:text-4xl">
             404 - Not Found
           </h1>
         </div>
@@ -46,7 +46,7 @@ function NotFound() {
               Go Back
             </button>
           </div>
-          <div className="flex flex-col items-center bg-gradient-to-br from-white to-gray-400 bg-clip-text p-2 text-center font-cthulhumbus font-medium leading-tight text-transparent sm:text-3xl md:text-4xl">
+          <div className="flex flex-col items-center bg-linear-to-br from-white to-gray-400 bg-clip-text p-2 text-center font-cthulhumbus font-medium leading-tight text-transparent sm:text-3xl md:text-4xl">
             <p>or be digested by Shoggoth</p>
             <img src={Shoggoth} alt="404 not found" className="-mt-11 scale-75" />
           </div>

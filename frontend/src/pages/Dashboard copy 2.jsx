@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import UICardLarge from '../assets/components/UICardLarge';
 import { useAuth } from '../context/AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import axios from 'axios';
 import Slider from 'react-slick';
 import React from 'react';
@@ -171,23 +171,23 @@ const Dashboard = ({ workouts }) => {
   };
 
   return (
-    <div className="container mx-auto mb-8 flex min-h-svh flex-col bg-gradient-to-br from-black to-blue-950 p-4">
+    <div className="container mx-auto mb-8 flex min-h-svh flex-col bg-linear-to-br from-black to-blue-950 p-4">
       <div className="mt-16 flex flex-col justify-center">
         <div className="flex cursor-pointer flex-col justify-center">
           <div className="flex flex-col">
-            <h1 className="cursor-default bg-gradient-to-br from-teal-500 to-green-800 bg-clip-text py-2 text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent sm:text-4xl md:text-5xl">
+            <h1 className="cursor-default bg-linear-to-br from-teal-500 to-green-800 bg-clip-text py-2 text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent sm:text-4xl md:text-5xl">
               Welcome Dear <br /> {userData.fullName}!
             </h1>
           </div>
           <div className="flex items-center justify-center">
             {(!workoutCompleted && (
               <button
-                className="rounded-md border-2 border-pink-800 bg-gradient-to-tr from-gray-900 via-pink-900 to-zinc-900 p-2 text-center"
+                className="rounded-md border-2 border-pink-800 bg-linear-to-tr from-gray-900 via-pink-900 to-zinc-900 p-2 text-center"
                 onClick={() => activateWorkout(activeWorkout)}>
                 Start Workout!
               </button>
             )) || (
-              <div className="mb-2 w-4/5 rounded-md border-2 border-pink-800 bg-gradient-to-tr from-gray-900 via-pink-900 to-zinc-900 p-2 text-center font-cthulhumbus text-2xl">
+              <div className="mb-2 w-4/5 rounded-md border-2 border-pink-800 bg-linear-to-tr from-gray-900 via-pink-900 to-zinc-900 p-2 text-center font-cthulhumbus text-2xl">
                 <span className="text-xl">Your workout for the the day is complete!</span> <br />
                 <span>Cthulhu is pleased!</span>
               </div>
@@ -198,7 +198,7 @@ const Dashboard = ({ workouts }) => {
         </div>
 
         <div className="flex flex-col">
-          <h2 className="cursor-default bg-gradient-to-br from-white to-gray-400 bg-clip-text pt-2 text-start font-cthulhumbus font-medium leading-tight text-transparent sm:text-3xl md:text-4xl">
+          <h2 className="cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text pt-2 text-start font-cthulhumbus font-medium leading-tight text-transparent sm:text-3xl md:text-4xl">
             Active workout
           </h2>
         </div>
@@ -216,7 +216,7 @@ const Dashboard = ({ workouts }) => {
             ))}
           </div>
           {/* <button
-          className="mt-4 px-2  rounded-md border-2 border-pink-800 bg-gradient-to-tr from-gray-900 via-pink-900 to-zinc-900 text-center"
+          className="mt-4 px-2  rounded-md border-2 border-pink-800 bg-linear-to-tr from-gray-900 via-pink-900 to-zinc-900 text-center"
           onClick={() => activateWorkout(activeWorkout)}>
           Start Workout
         </button> */}
@@ -229,7 +229,7 @@ const Dashboard = ({ workouts }) => {
         </Button> */}
         </div>
 
-        <h2 className="cursor-default bg-gradient-to-br from-white to-gray-400 bg-clip-text text-start font-cthulhumbus font-medium leading-tight text-transparent sm:text-3xl md:text-4xl">
+        <h2 className="cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text text-start font-cthulhumbus font-medium leading-tight text-transparent sm:text-3xl md:text-4xl">
           Workout Selection
         </h2>
 
@@ -245,7 +245,7 @@ const Dashboard = ({ workouts }) => {
         <br />
         <br />
         <div className="flex flex-col">
-          <h2 className="cursor-default bg-gradient-to-br from-white to-gray-400 bg-clip-text text-start font-cthulhumbus font-medium leading-tight text-transparent sm:text-3xl md:text-4xl">
+          <h2 className="cursor-default bg-linear-to-br from-white to-gray-400 bg-clip-text text-start font-cthulhumbus font-medium leading-tight text-transparent sm:text-3xl md:text-4xl">
             Other Cultists' Achievments
           </h2>
         </div>

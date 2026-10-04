@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router';
 import { motion, useMotionTemplate, useMotionValue, animate } from 'framer-motion';
 import { Canvas } from '@react-three/fiber';
 import { Stars } from '@react-three/drei';
@@ -64,7 +64,7 @@ const LandingPage = () => {
       className="relative grid min-h-svh place-content-center place-items-center overflow-hidden bg-gray-950 px-4 pt-5 text-gray-200 md:pt-10">
       <div className="mb-2 flex flex-row justify-evenly space-x-10">
         <img src={logoImage} alt="Logo" className="h-16 w-16" />
-        <h1 className="max-w-3xl bg-gradient-to-br from-white to-gray-400 bg-clip-text text-center font-cthulhumbus text-2xl font-medium leading-tight text-transparent sm:text-5xl md:text-6xl">
+        <h1 className="max-w-3xl bg-linear-to-br from-white to-gray-400 bg-clip-text text-center font-cthulhumbus text-2xl font-medium leading-tight text-transparent sm:text-5xl md:text-6xl">
           Train Like an <br />
           Ancient God
         </h1>
@@ -94,7 +94,7 @@ const LandingPage = () => {
         </Canvas>
       </div>
       <div className="px-8 text-slate-50 md:py-4">
-        <div className="relative -ml-[100px] h-[450px] w-[350px] scale-75 md:-ml-[175px]">
+        <div className="relative ml-[-100px] h-[450px] w-[350px] scale-75 md:ml-[-175px]">
           <Card
             imgUrl={avatarImage2}
             testimonial="My workout plan was very... transformative..."

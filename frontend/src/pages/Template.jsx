@@ -26,7 +26,7 @@ function Template() {
 
         {/* -- 1. Page title goes here --*/}
         <div className="flex flex-row justify-center">
-          <h1 className="bg-gradient-to-br from-white to-gray-400 bg-clip-text p-2 text-center font-cthulhumbus font-medium leading-tight text-transparent sm:text-3xl md:text-4xl">
+          <h1 className="bg-linear-to-br from-white to-gray-400 bg-clip-text p-2 text-center font-cthulhumbus font-medium leading-tight text-transparent sm:text-3xl md:text-4xl">
             -- 2. Give me a name --
           </h1>
         </div>

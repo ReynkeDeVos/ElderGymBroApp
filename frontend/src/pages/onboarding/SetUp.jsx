@@ -2,7 +2,7 @@ import setUp from '../../assets/images/startYourJourney.jpeg';
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
 import CardMedia from '@mui/material/CardMedia';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import { useAuth } from '../../context/AuthProvider';
 
@@ -38,7 +38,7 @@ function SetUp() {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-tr from-gray-900 via-pink-900 to-zinc-900 text-teal-500">
+      <div className="min-h-screen bg-linear-to-tr from-gray-900 via-pink-900 to-zinc-900 text-teal-500">
         {/* window bar */}
         <div className="flex flex-row justify-start bg-gray-950">
           {/* icon button container*/}

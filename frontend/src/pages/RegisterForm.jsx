@@ -10,17 +10,16 @@ import {
   Alert,
   InputAdornment,
   IconButton,
-  Grid,
 } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
-import { zxcvbnAsync, zxcvbnOptions } from '@zxcvbn-ts/core';
+import { ZxcvbnFactory } from '@zxcvbn-ts/core';
 import * as zxcvbnCommonPackage from '@zxcvbn-ts/language-common';
 import * as zxcvbnEnPackage from '@zxcvbn-ts/language-en';
 import * as zxcvbnDePackage from '@zxcvbn-ts/language-de';
 import { matcherPwnedFactory } from '@zxcvbn-ts/matcher-pwned';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 
 import { Stars } from '@react-three/drei';
@@ -31,9 +30,6 @@ import { useMotionTemplate, useMotionValue, motion, animate } from 'framer-motio
 import { useAuth } from '../context/AuthProvider';
 
 // Configure zxcvbn-ts
-const matcherPwned = matcherPwnedFactory(fetch, zxcvbnOptions);
-zxcvbnOptions.addMatcher('pwned', matcherPwned);
-
 const options = {
   dictionary: {
     ...zxcvbnCommonPackage.dictionary,
@@ -44,14 +40,14 @@ const options = {
   useLevenshteinDistance: true,
   translations: zxcvbnEnPackage.translations,
 };
-zxcvbnOptions.setOptions(options);
+const zxcvbn = new ZxcvbnFactory(options, { pwned: matcherPwnedFactory(fetch) });
 
 const usePasswordStrength = (password) => {
   const [result, setResult] = useState(null);
   const deferredPassword = useDeferredValue(password);
 
   useEffect(() => {
-    zxcvbnAsync(deferredPassword).then((response) => setResult(response));
+    zxcvbn.checkAsync(deferredPassword).then((response) => setResult(response));
   }, [deferredPassword]);
 
   return result;
@@ -233,12 +229,12 @@ function RegisterForm() {
               mt: 3,
             },
           }}>
-          <h2 className="my-8 max-w-3xl bg-gradient-to-br from-white to-gray-400 bg-clip-text text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent sm:text-5xl md:text-6xl">
+          <h2 className="my-8 max-w-3xl bg-linear-to-br from-white to-gray-400 bg-clip-text text-center font-cthulhumbus text-3xl font-medium leading-tight text-transparent sm:text-5xl md:text-6xl">
             Register
           </h2>
           <form onSubmit={handleRegister}>
-            <Grid container spacing={0}>
-              <Grid item xs={12}>
+            <div>
+              <div>
                 <TextField
                   fullWidth
                   required
@@ -248,8 +244,8 @@ function RegisterForm() {
                   value={formData.username}
                   onChange={handleChange}
                 />
-              </Grid>
-              <Grid item xs={12}>
+              </div>
+              <div>
                 <TextField
                   fullWidth
                   required
@@ -259,8 +255,8 @@ function RegisterForm() {
                   value={formData.email}
                   onChange={handleChange}
                 />
-              </Grid>
-              <Grid item xs={12}>
+              </div>
+              <div>
                 <TextField
                   fullWidth
                   required
@@ -271,7 +267,7 @@ function RegisterForm() {
                   variant="outlined"
                   value={formData.password}
                   onChange={handleChange}
-                  InputProps={{
+                  slotProps={{ input: {
                     endAdornment: (
                       <InputAdornment position="end">
                         <IconButton
@@ -282,7 +278,7 @@ function RegisterForm() {
                         </IconButton>
                       </InputAdornment>
                     ),
-                  }}
+                  } }}
                 />
                 {result && (
                   <>
@@ -301,8 +297,8 @@ function RegisterForm() {
                       ))}
                   </>
                 )}
-              </Grid>
-              <Grid item xs={12}>
+              </div>
+              <div>
                 <TextField
                   fullWidth
                   required
@@ -314,7 +310,7 @@ function RegisterForm() {
                   variant="outlined"
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                  InputProps={{
+                  slotProps={{ input: {
                     endAdornment: (
                       <InputAdornment position="end">
                         <IconButton
@@ -325,10 +321,10 @@ function RegisterForm() {
                         </IconButton>
                       </InputAdornment>
                     ),
-                  }}
+                  } }}
                 />
-              </Grid>
-              <Grid item xs={12}>
+              </div>
+              <div>
                 <Button
                   type="submit"
                   variant="contained"
@@ -342,15 +338,15 @@ function RegisterForm() {
                     Login
                   </Link>
                 </p>
-              </Grid>
-            </Grid>
+              </div>
+            </div>
           </form>
           <Backdrop sx={{ color: '#fff', zIndex: 99 }} open={openBackdrop} onClick={handleBackdropClick}>
             <div style={{ textAlign: 'center' }}>
               <Typography
                 variant="h3"
                 component="div"
-                className="mx-14 bg-gradient-to-br from-white to-gray-400 bg-clip-text text-center font-cthulhumbus font-bold">
+                className="mx-14 bg-linear-to-br from-white to-gray-400 bg-clip-text text-center font-cthulhumbus font-bold">
                 You are now part of the cult. <br /> Continue by logging in.
               </Typography>
               <CircularProgress color="success" sx={{ marginTop: 2, size: 100 }} />

@@ -8,7 +8,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 function UIElements() {
   return (
     <>
-      <div className="min-h-svh bg-gray-950 bg-gradient-to-r from-teal-800 to-gray-950 text-gray-200">
+      <div className="min-h-svh bg-gray-950 bg-linear-to-r from-teal-800 to-gray-950 text-gray-200">
         {/* window bar */}
         <div className="flex flex-row">
           {/* icon button container*/}
@@ -32,7 +32,7 @@ function UIElements() {
         </div>
 
         <div className="flex flex-row justify-center">
-          <h2 className="bg-gradient-to-br from-white to-gray-400 bg-clip-text p-2 text-center font-cthulhumbus font-medium leading-tight text-transparent sm:text-3xl md:text-4xl">
+          <h2 className="bg-linear-to-br from-white to-gray-400 bg-clip-text p-2 text-center font-cthulhumbus font-medium leading-tight text-transparent sm:text-3xl md:text-4xl">
             UI Elements Library
           </h2>
         </div>
@@ -298,11 +298,11 @@ function UIElements() {
                 id="id-date08"
                 type="date"
                 name="id-date08"
-                className="peer relative h-10 w-full rounded border border-slate-200 px-4 text-sm text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
+                className="peer relative h-10 w-full rounded-sm border border-slate-200 px-4 text-sm text-slate-500 placeholder-transparent outline-hidden transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-hidden invalid:focus:border-pink-500 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
               />
               <label
                 htmlFor="id-date08"
-                className="absolute -top-2 left-2 z-[1] cursor-text px-2 text-xs text-slate-400 transition-all before:absolute before:left-0 before:top-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-sm peer-autofill:-top-2 peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:cursor-default peer-focus:text-xs peer-focus:text-emerald-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent">
+                className="absolute -top-2 left-2 z-1 cursor-text px-2 text-xs text-slate-400 transition-all before:absolute before:left-0 before:top-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-sm peer-autofill:-top-2 peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:cursor-default peer-focus:text-xs peer-focus:text-emerald-500 peer-focus:peer-invalid:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent">
                 Date
               </label>
               <small className="px-4 py-1 text-xs text-slate-400 transition peer-invalid:text-pink-500">

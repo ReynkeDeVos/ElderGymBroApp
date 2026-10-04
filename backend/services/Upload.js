@@ -1,5 +1,4 @@
 import multer from 'multer';
-import { CloudinaryStorage } from 'multer-storage-cloudinary';
 import { v2 as cloudinary } from 'cloudinary';
 
 cloudinary.config({
@@ -8,14 +7,15 @@ cloudinary.config({
   api_secret: process.env.API_SECRET,
 });
 
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: 'profileAvatar',
-    allowedFormats: ['jpeg', 'jpg', 'png', 'heic', 'heif', 'webp', 'avif'],
-  },
-});
+// Memory storage; the file is pushed to Cloudinary in the controller.
+const upload = multer({ limits: { fileSize: 10 * 1024 * 1024 } });
 
-const upload = multer({ storage });
+export const uploadAvatar = async (file) => {
+  const { secure_url } = await cloudinary.uploader.upload(
+    `data:${file.mimetype};base64,${file.buffer.toString('base64')}`,
+    { folder: 'profileAvatar', allowed_formats: ['jpeg', 'jpg', 'png', 'heic', 'heif', 'webp', 'avif'] },
+  );
+  return secure_url;
+};
 
 export default upload;

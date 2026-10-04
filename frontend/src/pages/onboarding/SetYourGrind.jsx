@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router';
 import { useState } from 'react';
 import { Modal, Box, Typography, Button } from '@mui/material';
 import axios from 'axios';
@@ -80,7 +80,7 @@ function SetYourGrind() {
   };
 
   return (
-    <div className="min-h-svh bg-gradient-to-br from-black to-blue-950 text-gray-200">
+    <div className="min-h-svh bg-linear-to-br from-black to-blue-950 text-gray-200">
       <div className="flex flex-row justify-start">
         <div className="flex flex-row justify-center text-teal-100">
           <Link to="/startyourjourney" className="m-2 font-semibold text-teal-600">
@@ -99,7 +99,7 @@ function SetYourGrind() {
       </div>
 
       <div className="flex flex-row justify-center">
-        <h2 className="bg-gradient-to-br from-white to-gray-400 bg-clip-text p-2 text-center font-cthulhumbus text-2xl font-medium leading-tight text-transparent sm:text-3xl md:text-4xl">
+        <h2 className="bg-linear-to-br from-white to-gray-400 bg-clip-text p-2 text-center font-cthulhumbus text-2xl font-medium leading-tight text-transparent sm:text-3xl md:text-4xl">
           Set Your Grind
         </h2>
       </div>
@@ -110,7 +110,7 @@ function SetYourGrind() {
         {cards.map((card) => (
           <div
             key={card.name}
-            className="mx-auto max-w-xs transform cursor-pointer overflow-hidden rounded border-teal-800 bg-gradient-to-tr from-gray-900 via-pink-900 to-zinc-900 object-cover text-gray-800 shadow-lg transition duration-500 hover:scale-105"
+            className="mx-auto max-w-xs transform cursor-pointer overflow-hidden rounded-sm border-teal-800 bg-linear-to-tr from-gray-900 via-pink-900 to-zinc-900 object-cover text-gray-800 shadow-lg transition duration-500 hover:scale-105"
             onClick={() => handleOpen(card)}>
             <img
               className="h-36 w-96 object-cover font-cthulhumbus text-lg font-bold"
@@ -139,7 +139,7 @@ function SetYourGrind() {
             p: 1.5, // Adjusted padding for consistency
             borderRadius: '20px', // Added borderRadius for a softer look
           }}
-          className="bg-gradient-to-tr from-gray-900 via-pink-900 to-zinc-900 text-gray-800 shadow-lg">
+          className="bg-linear-to-tr from-gray-900 via-pink-900 to-zinc-900 text-gray-800 shadow-lg">
           {selectedCard && (
             <>
               <Typography
