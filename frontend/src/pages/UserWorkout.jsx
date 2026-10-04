@@ -27,10 +27,7 @@ const UserWorkout = ({ workouts }) => {
   // Mark the current exercise done and move on to the next one
   const finishExercise = () => {
     if (!completed.includes(selectedIndex)) setCompleted([...completed, selectedIndex]);
-    if (selectedIndex < exercises.length - 1) {
-      sliderRef.current.slickGoTo(selectedIndex + 1);
-      setSelectedIndex(selectedIndex + 1);
-    }
+    if (selectedIndex < exercises.length - 1) sliderRef.current.slickGoTo(selectedIndex + 1);
   };
 
   const completeExercise = async (sets) => {
@@ -63,7 +60,7 @@ const UserWorkout = ({ workouts }) => {
       <div className="mt-6 w-full max-w-screen-sm">
         <h2 className="font-cthulhumbus px-4 py-2 text-center text-xl text-white">Exercise List</h2>
         <div className="pb-6">
-          <Carousel className="max-w-full" ref={sliderRef} afterChange={setSelectedIndex}>
+          <Carousel className="max-w-full" ref={sliderRef} beforeChange={(_, next) => setSelectedIndex(next)}>
             {exercises.map((ex, index) => (
               <div key={ex.id} className="carousel-item flex flex-col items-center px-2">
                 <img

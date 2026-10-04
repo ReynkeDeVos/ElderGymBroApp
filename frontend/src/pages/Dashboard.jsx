@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthProvider';
@@ -20,6 +20,8 @@ const today = () => new Date().toISOString().slice(0, 10);
 const Dashboard = ({ workouts }) => {
   const { userData, setUserData, checkUser } = useAuth();
   const navigate = useNavigate();
+  // Local pick wins over userData, which the refresh below may overwrite with an older value
+  const [pickedId, setPickedId] = useState(null);
 
   // Pick up karma and progress earned since the last visit
   useEffect(() => {
@@ -28,7 +30,7 @@ const Dashboard = ({ workouts }) => {
 
   const selectedIndex = Math.max(
     0,
-    workouts.findIndex((w) => w.id === Number(userData.activeWorkoutId)),
+    workouts.findIndex((w) => w.id === (pickedId ?? Number(userData.activeWorkoutId))),
   );
   const activeWorkout = workouts[selectedIndex];
   const doneToday =
@@ -39,6 +41,7 @@ const Dashboard = ({ workouts }) => {
 
   const selectWorkout = async (index) => {
     const workoutId = workouts[index].id;
+    setPickedId(workoutId);
     setUserData((user) => ({ ...user, activeWorkoutId: String(workoutId) }));
     try {
       await api('/me/workouttracking/setActiveWorkout', { method: 'PATCH', body: { workoutId } });
@@ -71,7 +74,10 @@ const Dashboard = ({ workouts }) => {
             </h2>
             <div className="pb-6">
               {activeWorkout ? (
-                <Carousel className="max-w-full" initialSlide={selectedIndex} afterChange={selectWorkout}>
+                <Carousel
+                  className="max-w-full"
+                  initialSlide={selectedIndex}
+                  beforeChange={(_, next) => selectWorkout(next)}>
                   {workouts.map((workout) => (
                     <div key={workout.id} className="carousel-item flex flex-col items-center px-2">
                       <img src={workoutImage(workout.name)} alt={workout.name} className="rounded-t-lg shadow-lg" />
