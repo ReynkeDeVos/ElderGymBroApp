@@ -33,7 +33,13 @@ app.patch('/me/workouttracking/setActiveWorkout', verifyToken, tracking.setUserA
 app.post('/me/workouttracking/addWorkoutProgress', verifyToken, tracking.addWorkoutProgress);
 app.post('/me/workouttracking/addExerciseProgress/:workoutId', verifyToken, tracking.addExerciseProgress);
 
-app.get('/hardcodedworkouts', (req, res) => res.json(hardcodedWorkouts));
+// The frontend polls this while Render's free instance wakes up
+app.get('/health', (req, res) => res.sendStatus(204));
+
+// The workouts never change, so the browser may keep them until it needs the space
+app.get('/hardcodedworkouts', (req, res) =>
+  res.set('Cache-Control', 'public, max-age=31536000, immutable').json(hardcodedWorkouts),
+);
 
 app.use(errorHandler);
 
