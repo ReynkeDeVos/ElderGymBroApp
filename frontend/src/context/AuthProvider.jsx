@@ -1,59 +1,44 @@
-import { useContext, createContext, useEffect, useState, useRef } from 'react';
+import { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import axios from 'axios';
-import Cookies from 'js-cookie';
 
 const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
 
+// For public pages: send an already logged-in user to /home.
+export const useRedirectIfLoggedIn = () => {
+  const { isLoggedIn, checkUser } = useAuth();
+  const navigate = useNavigate();
+  useEffect(() => {
+    checkUser();
+  }, [checkUser]);
+  useEffect(() => {
+    if (isLoggedIn) navigate('/home');
+  }, [isLoggedIn, navigate]);
+};
+
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState({});
-  const didMount = useRef(false);
 
-  const checkUser = async () => {
+  // Fetches the current user (the auth cookie is httpOnly, so the API is the only way to know).
+  const checkUser = useCallback(async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/profile/me`, {
-        withCredentials: true,
-      });
-
-      if (response.data && response.data._id) {
-        setIsLoggedIn(true);
-        setUserData(response.data);
-        return response.data; // Return the user data
-      } else {
-        setIsLoggedIn(false);
-        setUserData({});
-        return {}; // Return empty object if no user data
-      }
-    } catch (error) {
+      const { data } = await axios.get('/profile/me');
+      setIsLoggedIn(true);
+      setUserData(data);
+      return data;
+    } catch {
       setIsLoggedIn(false);
       setUserData({});
-      console.error('Error in checkUser:', error);
-      return {}; // Return empty object in case of error
-    }
-  };
-
-  useEffect(() => {
-    if (didMount.current)
-      // This block ensures the effect runs only after the initial render
-      return;
-
-    didMount.current = true;
-    const token = Cookies.get('token');
-
-    if (token) {
-      checkUser();
+      return {};
     }
   }, []);
 
-  const values = {
-    isLoggedIn,
-    userData,
-    setIsLoggedIn,
-    setUserData,
-    checkUser,
-  };
-
-  return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ isLoggedIn, userData, setIsLoggedIn, setUserData, checkUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };

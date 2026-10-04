@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router';
 import { useAuth } from '../context/AuthProvider';
 
@@ -7,18 +7,10 @@ const PrivateRoute = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const verifyUser = async () => {
-      await checkUser();
-      setLoading(false);
-    };
-    verifyUser();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    checkUser().then(() => setLoading(false));
+  }, [checkUser]);
 
-  if (loading) {
-    return <div>Loading...</div>; // or a spinner/loader
-  }
-
+  if (loading) return <div>Loading...</div>;
   return isLoggedIn ? <Outlet /> : <Navigate to="/accessdenied" />;
 };
 

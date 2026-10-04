@@ -1,62 +1,39 @@
-import { useEffect, useRef, useState } from 'react';
-import { useNavigate, Link } from 'react-router';
-import { motion, useMotionTemplate, useMotionValue, animate } from 'framer-motion';
-import { Canvas } from '@react-three/fiber';
-import { Stars } from '@react-three/drei';
+import { useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router';
+import { motion, useMotionTemplate } from 'framer-motion';
 import { FiArrowRight } from 'react-icons/fi';
-
-import landingPageImage from '/src/assets/images/landingPage.avif';
+import landingPageImage from '../assets/images/landingPage.avif';
 import avatarImage from '../assets/images/avatar.avif';
 import avatarImage2 from '../assets/images/avatar2.avif';
 import avatarImage3 from '../assets/images/avatar3.avif';
-import { useAuth } from '../context/AuthProvider';
-
 import logoImage from '../assets/icons/elderGymBroLogo.png';
+import { useRedirectIfLoggedIn } from '../context/AuthProvider';
+import { Starfield, useAurora } from '../assets/components/Cosmos';
 
-const COLORS_TOP = ['#13FFAA', '#1E67C6', '#CE84CF', '#DD335C'];
+const testimonials = [
+  {
+    imgUrl: avatarImage2,
+    testimonial: 'My workout plan was very... transformative...',
+    author: 'Jenn F. - Marketing Director',
+  },
+  { imgUrl: avatarImage, testimonial: "Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn", author: 'Kevin' },
+  {
+    imgUrl: avatarImage3,
+    testimonial: 'Listen to the siren call & join us at the Elder Gym Bro!',
+    author: "Y'Golonac - Personal Trainer",
+  },
+];
 
 const LandingPage = () => {
-  const color = useMotionValue(COLORS_TOP[0]);
-  const [order, setOrder] = useState(['front', 'middle', 'back']);
-  const { isLoggedIn, checkUser } = useAuth();
+  useRedirectIfLoggedIn();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      await checkUser();
-    };
-    fetchUserData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate('/home');
-    }
-  }, [isLoggedIn, navigate]);
-
-  useEffect(() => {
-    animate(color, COLORS_TOP, {
-      ease: 'easeInOut',
-      duration: 10,
-      repeat: Infinity,
-      repeatType: 'mirror',
-    });
-  }, [color]);
-
-  const backgroundImage = useMotionTemplate`radial-gradient(125% 125% at 50% 0%, #020617 50%, ${color})`;
+  const { color, backgroundImage } = useAurora();
   const border = useMotionTemplate`0.2px solid ${color}`;
   const boxShadow = useMotionTemplate`0px 4px 24px ${color}`;
+  const [order, setOrder] = useState(['front', 'middle', 'back']);
 
-  const handleShuffle = () => {
-    const orderCopy = [...order];
-    orderCopy.unshift(orderCopy.pop());
-    setOrder(orderCopy);
-  };
-
-  const handleJoinCultClick = () => {
-    navigate('/register');
-  };
+  // Front card goes to the back
+  const handleShuffle = () => setOrder((o) => [o.at(-1), ...o.slice(0, -1)]);
 
   return (
     <motion.section
@@ -64,7 +41,7 @@ const LandingPage = () => {
       className="relative grid min-h-svh place-content-center place-items-center overflow-hidden bg-gray-950 px-4 pt-5 text-gray-200 md:pt-10">
       <div className="mb-2 flex flex-row justify-evenly space-x-10">
         <img src={logoImage} alt="Logo" className="h-16 w-16" />
-        <h1 className="max-w-3xl bg-linear-to-br from-white to-gray-400 bg-clip-text text-center font-cthulhumbus text-2xl font-medium leading-tight text-transparent sm:text-5xl md:text-6xl">
+        <h1 className="font-cthulhumbus max-w-3xl bg-linear-to-br from-white to-gray-400 bg-clip-text text-center text-2xl leading-tight font-medium text-transparent sm:text-5xl md:text-6xl">
           Train Like an <br />
           Ancient God
         </h1>
@@ -77,7 +54,7 @@ const LandingPage = () => {
           whileHover={{ scale: 1.015 }}
           whileTap={{ scale: 0.985 }}
           className="group relative flex w-fit items-center gap-1.5 rounded-full bg-gray-950/10 px-4 py-2 text-gray-50 transition-colors hover:bg-gray-950/50"
-          onClick={handleJoinCultClick}>
+          onClick={() => navigate('/register')}>
           Join the Cult
           <FiArrowRight className="transition-transform group-hover:-rotate-45 group-active:-rotate-12" />
         </motion.button>
@@ -88,34 +65,12 @@ const LandingPage = () => {
           </Link>
         </p>
       </div>
-      <div className="absolute inset-0 z-0">
-        <Canvas>
-          <Stars radius={50} count={2500} factor={4} fade speed={2} />
-        </Canvas>
-      </div>
+      <Starfield />
       <div className="px-8 text-slate-50 md:py-4">
-        <div className="relative ml-[-100px] h-[450px] w-[350px] scale-75 md:ml-[-175px]">
-          <Card
-            imgUrl={avatarImage2}
-            testimonial="My workout plan was very... transformative..."
-            author="Jenn F. - Marketing Director"
-            handleShuffle={handleShuffle}
-            position={order[0]}
-          />
-          <Card
-            imgUrl={avatarImage}
-            testimonial="Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn"
-            author="Kevin"
-            handleShuffle={handleShuffle}
-            position={order[1]}
-          />
-          <Card
-            imgUrl={avatarImage3}
-            testimonial="Listen to the siren call & join us at the Elder Gym Bro!"
-            author="Y'Golonac - Personal Trainer"
-            handleShuffle={handleShuffle}
-            position={order[2]}
-          />
+        <div className="relative -ml-[100px] h-[450px] w-[350px] scale-75 md:-ml-[175px]">
+          {testimonials.map((t, i) => (
+            <Card key={t.author} {...t} handleShuffle={handleShuffle} position={order[i]} />
+          ))}
         </div>
       </div>
     </motion.section>
@@ -125,38 +80,28 @@ const LandingPage = () => {
 const Card = ({ handleShuffle, testimonial, position, imgUrl, author }) => {
   const mousePosRef = useRef(0);
 
-  const onDragStart = (e) => {
-    mousePosRef.current = e.clientX;
-  };
-
   const onDragEnd = (e) => {
-    const diff = mousePosRef.current - e.clientX;
-
-    if (diff > 150) {
-      handleShuffle();
-    }
-
+    if (mousePosRef.current - e.clientX > 150) handleShuffle();
     mousePosRef.current = 0;
   };
 
-  const x = position === 'front' ? '0%' : position === 'middle' ? '33%' : '66%';
-  const rotateZ = position === 'front' ? '-6deg' : position === 'middle' ? '0deg' : '6deg';
-  const zIndex = position === 'front' ? '2' : position === 'middle' ? '1' : '0';
-
+  const x = { front: '0%', middle: '33%', back: '66%' }[position];
+  const rotate = { front: '-6deg', middle: '0deg', back: '6deg' }[position];
+  const zIndex = { front: 2, middle: 1, back: 0 }[position];
   const draggable = position === 'front';
 
   return (
     <motion.div
       style={{ zIndex }}
-      animate={{ rotate: rotateZ, x }}
+      animate={{ rotate, x }}
       drag
       dragElastic={0.35}
       dragListener={draggable}
       dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}
-      onDragStart={onDragStart}
+      onDragStart={(e) => (mousePosRef.current = e.clientX)}
       onDragEnd={onDragEnd}
       transition={{ duration: 0.35 }}
-      className={`absolute left-0 top-0 grid h-[450px] w-[350px] select-none place-content-center space-y-6 rounded-2xl border-2 border-slate-700 bg-slate-800/20 p-6 shadow-xl backdrop-blur-md ${
+      className={`absolute top-0 left-0 grid h-[450px] w-[350px] place-content-center space-y-6 rounded-2xl border-2 border-slate-700 bg-slate-800/20 p-6 shadow-xl backdrop-blur-md select-none ${
         draggable ? 'cursor-grab active:cursor-grabbing' : ''
       }`}>
       <img
@@ -164,7 +109,7 @@ const Card = ({ handleShuffle, testimonial, position, imgUrl, author }) => {
         alt={`Image of ${author}`}
         className="pointer-events-none mx-auto h-32 w-32 rounded-full border-2 border-slate-700 bg-slate-200 object-cover"
       />
-      <span className="text-center text-2xl italic text-slate-400">&quot;{testimonial}&quot;</span>
+      <span className="text-center text-2xl text-slate-400 italic">&quot;{testimonial}&quot;</span>
       <span className="text-center font-medium text-indigo-400">{author}</span>
     </motion.div>
   );

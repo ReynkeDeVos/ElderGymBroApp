@@ -1,123 +1,56 @@
-import React, { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
+import { useState } from 'react';
 import skippingImage from '../assets/images/skipping.png';
 
-const UserActiveExercise = ({
-  exercise,
-  activeWorkout,
-  onComplete,
-  onCompleteWithoutKarma,
-  isCompleted,
-  setCompletedExercises,
-  completedExercises,
-  selectedIndex,
-  sliderRef,
-  handleExerciseClick,
-  setShowModal,
-}) => {
-  const [setsData, setSetsData] = useState([]);
-  const [showSkipModal, setShowSkipModal] = useState(false); // Track skip modal visibility
+const inputClass =
+  'block w-full rounded-md border-0 bg-white py-1.5 pr-20 pl-7 text-gray-900 ring-1 ring-gray-300 ring-inset placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600 focus:ring-inset sm:text-sm sm:leading-6';
 
-  useEffect(() => {
-    // Initialize setsData based on the amount of sets for the exercise
-    const initialSetsData = Array.from({ length: exercise.sets || 0 }, () => ({ reps: '', weight: '' }));
-    setSetsData(initialSetsData);
-  }, [exercise]);
+// Parent remounts this per exercise (key), so the set inputs start empty each time.
+const UserActiveExercise = ({ exercise, isCompleted, onComplete, onSkip }) => {
+  const [sets, setSets] = useState(() => Array.from({ length: exercise.sets || 0 }, () => ({ reps: '', weight: '' })));
+  const [showSkipModal, setShowSkipModal] = useState(false);
 
-  const handleSetChange = (index, field, value) => {
-    const updatedSets = setsData.map((set, i) => (i === index ? { ...set, [field]: value } : set));
-    setSetsData(updatedSets);
-  };
+  const handleSetChange = (index, field, value) =>
+    setSets(sets.map((set, i) => (i === index ? { ...set, [field]: value } : set)));
 
-  const validateForm = (sets) => {
-    return sets.every((set) => !isNaN(set.reps) && set.reps !== '' && !isNaN(set.weight) && set.weight !== '');
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const allEmpty = setsData.every((set) => set.reps === '' && set.weight === '');
-    const isValid = validateForm(setsData);
-
-    if (allEmpty) {
-      toast.error('Complete the Sets first');
-      return;
-    }
-
-    if (!isValid) {
-      toast.error('Please enter valid numbers for all fields.');
-      return;
-    }
-
-    // Call the onComplete function with exercise data to handle submission and karma points
-    await onComplete({
-      id: exercise.id,
-      name: exercise.name,
-      setsData: setsData,
-    });
-  };
-
-  const handleSkipExercise = () => {
-    // Mark the current exercise as completed
-    setCompletedExercises([...completedExercises, selectedIndex]);
-    // Close the skip modal
-    setShowSkipModal(false);
-    // Move to the next exercise directly without awarding karma
-    onCompleteWithoutKarma();
-  };
-
-  const handleInputKeyDown = (e) => {
-    if (
-      !/[0-9]/.test(e.key) &&
-      e.key !== 'Backspace' &&
-      e.key !== 'ArrowLeft' &&
-      e.key !== 'ArrowRight' &&
-      e.key !== 'Tab' &&
-      e.key !== 'Delete' &&
-      e.key !== 'Enter'
-    ) {
-      e.preventDefault();
-    }
-  };
+  const muted = isCompleted ? 'text-gray-500' : '';
 
   return (
     <div
-      key={exercise.id}
-      className={`m-4 border-4 border-solid ${isCompleted ? 'border-gray-500 bg-gray-300' : 'border-teal-800 bg-zinc-800'} rounded-lg p-4 font-cthulhumbus text-white shadow-md`}>
-      <h2 className={`${isCompleted ? 'text-gray-500' : 'text-teal-500'} pb-2 pl-2 pt-2 text-center text-lg`}>
+      className={`m-4 border-4 border-solid ${isCompleted ? 'border-gray-500 bg-gray-300' : 'border-teal-800 bg-zinc-800'} font-cthulhumbus rounded-lg p-4 text-white shadow-md`}>
+      <h2 className={`${isCompleted ? 'text-gray-500' : 'text-teal-500'} pt-2 pb-2 pl-2 text-center text-lg`}>
         {exercise.name}
       </h2>
-      {/* <img
-        src={`../src/assets/images/Exercises/${exercise.name.replace(/ /g, '_')}/images/0.jpg`}
-        alt={exercise.name}
-        className={`h-auto w-20 rounded-md ${isCompleted ? 'grayscale' : ''} pl-3`}
-      /> */}
-      <form onSubmit={handleSubmit}>
-        {setsData.map((set, index) => (
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          onComplete(sets);
+        }}>
+        {sets.map((set, index) => (
           <div
             key={index}
             className={`m-2 border-2 border-solid ${isCompleted ? 'border-gray-500 bg-gray-400' : 'border-teal-800 bg-zinc-700'} rounded-md p-2`}>
-            <p className={`${isCompleted ? 'text-gray-500' : ''} pb-2`}>
+            <p className={`${muted} pb-2`}>
               Set <span>{index + 1}</span>
             </p>
-            <label className={`${isCompleted ? 'text-gray-500' : ''}`}>Weight (kg)</label>
-            <input
-              type="text"
-              value={set.weight}
-              onChange={(e) => handleSetChange(index, 'weight', e.target.value)}
-              onKeyDown={handleInputKeyDown}
-              className="block w-full rounded-md border-0 bg-white py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              disabled={isCompleted}
-            />
-
-            <label className={`${isCompleted ? 'text-gray-500' : ''}`}>Reps</label>
-            <input
-              type="text"
-              value={set.reps}
-              onChange={(e) => handleSetChange(index, 'reps', e.target.value)}
-              onKeyDown={handleInputKeyDown}
-              className="block w-full rounded-md border-0 bg-white py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              disabled={isCompleted}
-            />
+            {[
+              ['weight', 'Weight (kg)'],
+              ['reps', 'Reps'],
+            ].map(([field, label]) => (
+              <label key={field} className={`block ${muted}`}>
+                {label}
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]+"
+                  title="Whole numbers only"
+                  required
+                  value={set[field]}
+                  onChange={(e) => handleSetChange(index, field, e.target.value)}
+                  className={inputClass}
+                  disabled={isCompleted}
+                />
+              </label>
+            ))}
           </div>
         ))}
 
@@ -137,7 +70,7 @@ const UserActiveExercise = ({
         </div>
       </form>
       {showSkipModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75">
           <div className="w-full max-w-sm rounded-lg bg-white p-6 shadow-lg">
             <h2 className="text-center text-2xl font-bold text-red-500">Are you sure to skip this workout?</h2>
             <img src={skippingImage} alt="Skipping" className="mx-auto my-4 h-32 w-32" />
@@ -145,7 +78,12 @@ const UserActiveExercise = ({
               <button className="rounded-md bg-red-500 px-4 py-2 text-white" onClick={() => setShowSkipModal(false)}>
                 No, continue
               </button>
-              <button className="rounded-md bg-green-500 px-4 py-2 text-white" onClick={handleSkipExercise}>
+              <button
+                className="rounded-md bg-green-500 px-4 py-2 text-white"
+                onClick={() => {
+                  setShowSkipModal(false);
+                  onSkip();
+                }}>
                 Yes, skip this one
               </button>
             </div>
